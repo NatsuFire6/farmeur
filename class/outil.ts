@@ -1,6 +1,7 @@
 export class Outil {
     Nom = ""
     tailleDeLaRecolte = 1
+    prixAmelioration = 10
 
     constructor(nom :string, tailleDeLaRecolte :number){
         this.Nom = nom
@@ -9,5 +10,6 @@ export class Outil {
 
     augmenterLaTailleDeLaRecolte(deCbm :number){
         this.tailleDeLaRecolte += deCbm
+        this.prixAmelioration *= 2 
     }
 }

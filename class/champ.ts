@@ -5,9 +5,14 @@ export class Champ{
         parcellesPleine = this.longueur * this.largeur
     }
     parcellesVide = 0
-    fertiliter = 1
     typeDeBle = ""
     niveauDeBle = 1
+    fertiliter = 1
+    stockFertiliter = 0
+
+    prixAmeliorationTaille = 10
+    prixAmeliorationFertiliter = 10
+    prixFertilizant = 10
 
     constructor(typeDeBle :string, longueur :number, largeur :number, fertiliter :number){
         this.typeDeBle = typeDeBle
@@ -27,8 +32,20 @@ export class Champ{
             return reste
         }
     }
+    augmenterTaille(){
+        this.prixAmeliorationTaille *= 1+(this.prixAmeliorationTaille/10)
+        if(this.tailles.largeur <= this.tailles.longueur){
+            this.tailles.largeur++
+        }else{
+            this.tailles.longueur++
+        }
+    }
     augmenterLaFertiliter(){
         this.fertiliter++
+        this.prixAmeliorationFertiliter *= 1+(this.prixAmeliorationFertiliter/10)
+    }
+    augmenterStockageFertilizant(deCbm :number){
+        this.stockFertiliter += deCbm
     }
     replanter(deCbm :number){
         this.parcellesVide -= deCbm
