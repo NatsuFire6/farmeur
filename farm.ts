@@ -9,36 +9,20 @@ import { functionAmeliorerOutil } from "./functions/functionAmeliorerOutil.ts";
 import { functionReplanter } from "./functions/functionReplanter.ts";
 import { functionFarmer } from "./functions/functionFarmer.ts";
 import { functionVendre } from "./functions/functionVendre.ts";
+import { functionChoisirNom } from "./functions/functionChoisirNom.ts";
 
-let names 
-let changeName
-let changeNameBool:boolean
-let rep
-
+let rep 
 export function zeroNull(phrases :string) {
     do {
         rep = prompt(phrases)
     } while (rep === null);
     return rep
 }
-
-do{
-    names = zeroNull("\nBonjour voyageur, quel est votre nom ?")
-    console.log("Votre nom est \x1b[34m"+names+"\x1b[0m.")
-    changeName = zeroNull("Voulez vous le changer ?")
-    if(changeName === "oui"){
-        changeNameBool = true
-    }else{
-        changeNameBool = false
-    }
-}while (changeNameBool)
-
-console.log("Votre nom est \x1b[34m"+names+"\x1b[0m !\n")
+const names = functionChoisirNom()
 
 export const sacAdoss = new SacAdos("tout petit sac",1,1,1);
 export const champs = new Champ("Blé", 2, 2, 1);
 export const outils = new Outil("mains",1);
-
 export const joueurs = new Joueur(names,0,0,0);
 joueurs.sacAdos = sacAdoss.Nom
 joueurs.outil = outils.Nom
@@ -68,4 +52,3 @@ function jeu(faire:number|string){
     }
     return jeu(zeroNull("\nPour jouer veillez entrer ce que vous voulez faire :\nAfficher des \x1b[34minfos\x1b[0m : 1\n\x1b[34mFarmer\x1b[0m : 2\n\x1b[34mVendre\x1b[0m : 3\n\x1b[34mReplanter\x1b[0m : 4\n\x1b[34mAméliorer\x1b[0m : 5"))
 }
-
