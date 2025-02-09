@@ -21,8 +21,9 @@ export class SacAdos{
             this.remplissement += deCbm
             return true
         }else{
+            const reste = this.tailles.stockage - this.remplissement
             this.remplissement = this.tailles.stockage
-            console.log("\x1b[31mVotre "+this.Nom+" est plein !\x1b[0m")
+            console.log("\x1b[31mVous n'avez pus récolter que "+reste+" blé(s) !\nVotre "+this.Nom+" est plein !\x1b[0m")
             return false
         }
     }

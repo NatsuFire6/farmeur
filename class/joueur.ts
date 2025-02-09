@@ -23,9 +23,6 @@ export class Joueur {
             this.niveau += 1
         }
     }
-    augmenterLaMonaie(deCbm :number){
-        this.monaie += deCbm
-    }
     modifierLeSacAdos(nouveauSacAdos :string){
         this.sacAdos = nouveauSacAdos
     }
