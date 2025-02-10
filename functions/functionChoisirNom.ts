@@ -1,4 +1,4 @@
-import { zeroNull } from "../farm.ts";
+import { zeroNull } from "./functionFaireEnNombre.ts";
 
 let names 
 let changeName

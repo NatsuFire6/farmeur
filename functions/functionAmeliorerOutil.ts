@@ -1,6 +1,6 @@
 import { joueurs } from "../farm.ts";
 import { outils } from "../farm.ts";
-import { zeroNull } from "../farm.ts";
+import { zeroNull } from "./functionFaireEnNombre.ts";
 
 export function functionAmeliorerOutil(){
     const faire = zeroNull("\nQue voulez vous améliorer sur votre \x1b[34moutil\x1b[0m ?\n\x1b[34mtaille de la récolte\x1b[0m : "+outils.prixAmelioration+"€\n")

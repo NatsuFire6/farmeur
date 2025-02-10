@@ -33,7 +33,7 @@ export class Champ{
         }
     }
     augmenterTaille(){
-        this.prixAmeliorationTaille *= this.niveauAmeliorationTaille
+        this.prixAmeliorationTaille *= 1+this.niveauAmeliorationTaille
         this.niveauAmeliorationTaille++
         if(this.tailles.largeur <= this.tailles.longueur){
             this.tailles.largeur++;

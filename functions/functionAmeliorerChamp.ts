@@ -1,4 +1,4 @@
-import { zeroNull } from "../farm.ts";
+import { zeroNull } from "./functionFaireEnNombre.ts";
 import { champs } from "../farm.ts";
 import { joueurs } from "../farm.ts";
 

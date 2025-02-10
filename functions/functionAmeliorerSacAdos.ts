@@ -1,4 +1,4 @@
-import { zeroNull } from "../farm.ts";
+import { zeroNull } from "./functionFaireEnNombre.ts";
 import { sacAdoss } from "../farm.ts";
 import { joueurs } from "../farm.ts";
 
