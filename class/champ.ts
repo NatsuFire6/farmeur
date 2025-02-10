@@ -8,6 +8,7 @@ export class Champ{
     typeDeBle = ""
     prixDuBle = 2
     fertiliter = 1
+    niveauAmeliorationTaille = 1
 
     prixAmeliorationTaille = 10
     prixAmeliorationFertiliter = 10
@@ -32,7 +33,8 @@ export class Champ{
         }
     }
     augmenterTaille(){
-        this.prixAmeliorationTaille *= 1+(this.prixAmeliorationTaille/10)
+        this.prixAmeliorationTaille *= this.niveauAmeliorationTaille
+        this.niveauAmeliorationTaille++
         if(this.tailles.largeur <= this.tailles.longueur){
             this.tailles.largeur++;
         }else{
