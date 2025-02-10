@@ -11,8 +11,8 @@ import { functionFarmer } from "./functions/functionFarmer.ts";
 import { functionVendre } from "./functions/functionVendre.ts";
 import { functionChoisirNom } from "./functions/functionChoisirNom.ts";
 
-let rep 
-export function zeroNull(phrases :string) {
+export function zeroNull(phrases :string) :string{
+    let rep
     do {
         rep = prompt(phrases)
     } while (rep === null);
