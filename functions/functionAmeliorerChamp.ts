@@ -23,5 +23,10 @@ export function functionAmeliorerChamp(){
         }else{
             console.log(`\n\x1b[31mVous n'avez pas assez d'argent (${joueurs.monaie}/${prix}€) !\x1b[0m\n`)
         }
+    }else if (faire == "0"){
+        return
+    }else{
+        console.log("\x1b[96mVeuillez entrer quelque chose de correcte (0, 1 ou taille de la recolte) !\x1b[0m")
+        functionAmeliorerChamp()
     }
 }
