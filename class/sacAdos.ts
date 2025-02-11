@@ -8,6 +8,7 @@ export class SacAdos{
     remplissement = 0
     Nom = ""
     prixAmelioration = 10
+    niveau = 1
 
     constructor(nom :string, longueur :number, largeur :number, hauteur :number){
         this.Nom = nom
@@ -33,7 +34,7 @@ export class SacAdos{
         return vente
     }
     augmenterStockage(){
-        this.prixAmelioration *= 1 + this.tailles.stockage
+        this.prixAmelioration *= 1 + Math.ceil(Math.sqrt(this.niveau))
         if(this.tailles.largeur <= this.tailles.hauteur && this.tailles.largeur <= this.tailles.longueur){
             this.tailles.largeur++
         }else if(this.tailles.longueur <= this.tailles.hauteur && this.tailles.longueur <= this.tailles.largeur){

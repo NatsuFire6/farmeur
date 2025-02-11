@@ -9,6 +9,7 @@ export class Champ{
     prixDuBle = 2
     fertiliter = 1
     niveauAmeliorationTaille = 1
+    niveauAmeliorationFertiliter = 1
 
     prixAmeliorationTaille = 10
     prixAmeliorationFertiliter = 10
@@ -44,7 +45,7 @@ export class Champ{
     }
     augmenterLaFertiliter(){
         this.fertiliter++
-        this.prixAmeliorationFertiliter *= 1+(this.prixAmeliorationFertiliter/10)
+        this.prixAmeliorationFertiliter *= (1+Math.ceil(this.niveauAmeliorationFertiliter/10))*2
     }
     replanter(deCbm :number){
         this.parcellesVide -= deCbm

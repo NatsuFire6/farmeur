@@ -8,8 +8,8 @@ export class Outil {
         this.tailleDeLaRecolte = tailleDeLaRecolte
     }
 
-    augmenterLaTailleDeLaRecolte(deCbm :number){
-        this.tailleDeLaRecolte += deCbm
-        this.prixAmelioration *= 2 
+    augmenterLaTailleDeLaRecolte(){
+        this.tailleDeLaRecolte++
+        this.prixAmelioration *= 4
     }
 }

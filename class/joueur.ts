@@ -4,7 +4,9 @@ export class Joueur {
     sacAdos = ""
     outil = ""
     xp = 0
+    xpPass = 100
     niveau = 0
+    niveauPass = 10
 
     constructor(name :string, monaie :number, niveau :number, xp :number){
         this.name = name
@@ -14,13 +16,17 @@ export class Joueur {
     }
 
     mettreUnNom(nom :string){
-        name = nom
+        this.name = nom
     }
     augmenterXp(deCbm :number){
         this.xp += deCbm
-        if (this.xp >= 100) {
-            this.xp -= 100
+        if (this.xp >= this.xpPass) {
+            this.xp -= this.xpPass
             this.niveau += 1
+        }
+        if (this.niveau = this.niveauPass) {
+            this.xpPass *= 10
+            this.niveauPass += 10
         }
     }
     modifierLeSacAdos(nouveauSacAdos :string){
