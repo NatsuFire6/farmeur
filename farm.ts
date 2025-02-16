@@ -12,11 +12,6 @@ import { functionVendre } from "./functions/functionVendre.ts";
 import { functionChoisirNom } from "./functions/functionChoisirNom.ts";
 import { functionFaireEnNombre } from "./functions/functionFaireEnNombre.ts";
 
-import { WebUI } from "https://deno.land/x/webui@2.5.3/mod.ts";
-const myWindow = new WebUI();
-myWindow.show("<html><script src=\"webui.js\"></script> Hello World! </html>");
-await WebUI.wait();
-
 const names = functionChoisirNom()
 
 export const sacAdoss = new SacAdos("tout petit sac",1,1,1);
