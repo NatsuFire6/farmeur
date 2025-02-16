@@ -27,13 +27,12 @@ joueurs.sacAdos = sacAdoss.Nom
 joueurs.outil = outils.Nom
 
 
-aaaaaaaa
 //console.log(`sac a dos prix 1 : ${sacAdoss.prixAmelioration}\nprix 2 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 3 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 4 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 5 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 6 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 7 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 8 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 9 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}`)
 //console.log(`taille champ prix 1 : ${champs.prixAmeliorationTaille}\ntaille champ prix 2 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 3 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 4 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 5 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 6 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}`)
 //console.log(`fertiliter prix 1 : ${champs.prixAmeliorationFertiliter}\nprix 2 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}\nprix 3 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}\nprix 4 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}\nprix 5 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}\nprix 6 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}\nprix 7 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}\nprix 8 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}\nprix 9 : ${champs.augmenterLaFertiliter(),champs.prixAmeliorationFertiliter}`)
 //console.log(`outil prix 1 : ${outils.prixAmelioration}\ntaille champ prix 2 : ${outils.augmenterLaTailleDeLaRecolte(),outils.prixAmelioration}\ntaille champ prix 3 : ${outils.augmenterLaTailleDeLaRecolte(),outils.prixAmelioration}\ntaille champ prix 4 : ${outils.augmenterLaTailleDeLaRecolte(),outils.prixAmelioration}\ntaille champ prix 5 : ${outils.augmenterLaTailleDeLaRecolte(),outils.prixAmelioration}\ntaille champ prix 6 : ${outils.augmenterLaTailleDeLaRecolte(),outils.prixAmelioration}`)
 
-jeu(functionFaireEnNombre("\nPour jouer veillez entrer ce que vous voulez faire :\nAfficher des \x1b[34minfos\x1b[0m : 1\n\x1b[34mFarmer\x1b[0m : 2\n\x1b[34mVendre\x1b[0m : 3\n\x1b[34mReplanter\x1b[0m : 4\n\x1b[34mAméliorer\x1b[0m : 5\n"))
+jeu(functionFaireEnNombre("\nPour jouer veillez entrer ce que vous voulez faire :\x1b[34mprofile\x1b[0m : 1\n\x1b[34mFarmer\x1b[0m : 2\n\x1b[34mVendre\x1b[0m : 3\n\x1b[34mReplanter\x1b[0m : 4\n\x1b[34mAméliorer\x1b[0m : 5\n"))
 console.log()
 function jeu(faire:number){
     if(faire === 1){
@@ -58,5 +57,5 @@ function jeu(faire:number){
     }else{
         console.log("\x1b[96mVeuillez entrer quelque chose de correcte !\x1b[0m")
     }
-    return jeu(functionFaireEnNombre("\nPour jouer veillez entrer ce que vous voulez faire :\nVoir \x1b[34mprofile\x1b[0m : 1\n\x1b[34mFarmer\x1b[0m : 2\n\x1b[34mVendre\x1b[0m : 3\n\x1b[34mReplanter\x1b[0m : 4\n\x1b[34mAméliorer\x1b[0m : 5\n"))
+    return jeu(functionFaireEnNombre("\nPour jouer veillez entrer ce que vous voulez faire :\x1b[34mprofile\x1b[0m : 1\n\x1b[34mFarmer\x1b[0m : 2\n\x1b[34mVendre\x1b[0m : 3\n\x1b[34mReplanter\x1b[0m : 4\n\x1b[34mAméliorer\x1b[0m : 5\n"))
 }
