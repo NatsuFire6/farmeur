@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmeur simulator</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="icon" type="image/png" href="./images/icon_du_jeu.png">
+</head>
+<body>
+    <header>
+        <div class="container resources-container">
+            <div class="resource-item">
+                <img src="./images/level.png" alt="Niveau" class="resource-icon"> Niveau: <span id="niveau"></span> <span class="xp">(XP: <span id="xp"></span>)</span>
+            </div>
+            <div class="resource-item">
+                <img src="./images/wheat_money.png" alt="Argent" class="resource-icon"> Argent: <span id="argent"></span>€
+            </div>
+            <div class="resource-item">
+                <img src="./images/wheat_icon.png" alt="Ble" class="resource-icon"> Ble: <span id="ble"></span>
+            </div>
+        </div>
+        <div class="container profile-container">
+            <div class="profile-item">
+                <img src="./images/main.png" alt="Outil" class="profile-icon"> Outil: <span id="outil"></span>
+            </div>
+            <div class="profile-item">
+                <img src="./images/sac_a_dos.png" alt="Sac à dos" class="profile-icon"> Sac à dos: <span id="sac_a_dos"></span>
+            </div>
+            <div class="profile-item">
+                <img src="./images/wheat_icon.png" alt="Champ" class="profile-icon"> Champ: <span id="champ"></span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>Farmeur simulator</h1>
+        <button class="harvest-button">
+            <img src="./images/icon_du_jeu.png" alt="Recolter" class="button-icon">
+        </button>
+    </main>
+    <script>
+        // Remplacer les valeurs fictives par celles provenant de vos fichiers TypeScript
+        document.getElementById('niveau').textContent = joueurs.niveau;
+        document.getElementById('xp').textContent = joueurs.xp;
+        document.getElementById('argent').textContent = joueurs.monaie;
+        document.getElementById('ble').textContent = sacAdoss.remplissement;
+        document.getElementById('outil').textContent = outils.Nom;
+        document.getElementById('sac_a_dos').textContent = sacAdoss.Nom;
+        document.getElementById('champ').textContent = `${champs.tailles.parcellesPleine - champs.parcellesVide}/${champs.tailles.parcellesPleine}`;
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Style cartoon */
+    background-color: #f0f8ff; /* Couleur de fond légère */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #ffebcd; /* Couleur de fond cartoon */
+    border-bottom: 2px solid #8b4513; /* Bordure cartoon */
+}
+
+.container {
+    padding: 10px;
+    border: 2px solid #8b4513; /* Bordure cartoon */
+    border-radius: 10px;
+    background-color: #fffacd; /* Couleur de fond cartoon */
+    box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-info {
+    display: flex; /* Toujours afficher les informations du profil */
+    flex-direction: column;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.resources-list {
+    display: flex;
+    align-items: center;
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.resource-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.xp {
+    font-size: 0.9em;
+    color: #555;
+    margin-left: 5px;
+}
+
+.harvest-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 0; /* Enlever le padding pour que le bouton soit uniquement l'image */
+    background-color: transparent; /* Enlever la couleur de fond */
+    border: none;
+    cursor: pointer;
+}
+
+.harvest-button:hover .button-icon {
+    transform: scale(1.1); /* Agrandir l'image au survol */
+}
+
+.button-icon {
+    width: 100px; /* Ajuster la taille de l'image */
+    height: 100px;
+}

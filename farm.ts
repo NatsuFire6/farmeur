@@ -12,20 +12,28 @@ import { functionVendre } from "./functions/functionVendre.ts";
 import { functionChoisirNom } from "./functions/functionChoisirNom.ts";
 import { functionFaireEnNombre } from "./functions/functionFaireEnNombre.ts";
 
+
 import { WebUI } from "https://deno.land/x/webui@2.5.3/mod.ts";
-const myWindow = new WebUI();
-myWindow.show("<html><script src=\"webui.js\"></script> Hello World! </html>");
-await WebUI.wait();
+async function functionHTML(): Promise<void> {
+    const myWindow = new WebUI();
+    try {
+        const htmlContent: string = await Deno.readTextFile("./main.html");
+        myWindow.show(htmlContent);
+    } catch (error) {
+        console.error("Erreur lors de la lecture du fichier HTML :", error);
+    }
+}
 
-const names = functionChoisirNom()
 
+
+const names = functionChoisirNom();
 export const sacAdoss = new SacAdos("tout petit sac",1,1,1);
 export const champs = new Champ("Blé", 2, 2, 1);
 export const outils = new Outil("mains",1);
 export const joueurs = new Joueur(names,0,0,0);
 joueurs.sacAdos = sacAdoss.Nom
 joueurs.outil = outils.Nom
-
+await functionHTML();
 
 //console.log(`sac a dos prix 1 : ${sacAdoss.prixAmelioration}\nprix 2 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 3 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 4 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 5 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 6 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 7 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 8 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}\nprix 9 : ${sacAdoss.augmenterStockage(),sacAdoss.prixAmelioration}`)
 //console.log(`taille champ prix 1 : ${champs.prixAmeliorationTaille}\ntaille champ prix 2 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 3 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 4 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 5 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}\ntaille champ prix 6 : ${champs.augmenterTaille(),champs.prixAmeliorationTaille}`)
