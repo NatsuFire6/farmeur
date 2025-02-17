@@ -20,31 +20,47 @@
         </div>
         <div class="container profile-container">
             <div class="profile-item">
-                <img src="./images/main.png" alt="Outil" class="profile-icon"> Outil: <span id="outil"></span>
+                Outil: <span id="outil"></span>
+                <img src="./images/main.png" alt="Outil" class="profile-icon">
             </div>
             <div class="profile-item">
-                <img src="./images/sac_a_dos.png" alt="Sac à dos" class="profile-icon"> Sac à dos: <span id="sac_a_dos"></span>
+                Sac à dos: <span id="sac_a_dos"></span>
+                <img src="./images/sac_a_dos.png" alt="Sac à dos" class="profile-icon">
+                <div class="profile-item">
+                    <span id="champ"></span> Champ: <img id="champ-icon" src="./images/wheat_icon_empty.png" alt="Champ" class="profile-icon">
+                </div>
             </div>
-            <div class="profile-item">
-                <img src="./images/wheat_icon.png" alt="Champ" class="profile-icon"> Champ: <span id="champ"></span>
-            </div>
-        </div>
-    </header>
-    <main>
-        <h1>Farmeur simulator</h1>
-        <button class="harvest-button">
-            <img src="./images/icon_du_jeu.png" alt="Recolter" class="button-icon">
-        </button>
-    </main>
-    <script>
-        // Remplacer les valeurs fictives par celles provenant de vos fichiers TypeScript
-        document.getElementById('niveau').textContent = joueurs.niveau;
-        document.getElementById('xp').textContent = joueurs.xp;
-        document.getElementById('argent').textContent = joueurs.monaie;
-        document.getElementById('ble').textContent = sacAdoss.remplissement;
-        document.getElementById('outil').textContent = outils.Nom;
-        document.getElementById('sac_a_dos').textContent = sacAdoss.Nom;
-        document.getElementById('champ').textContent = `${champs.tailles.parcellesPleine - champs.parcellesVide}/${champs.tailles.parcellesPleine}`;
-    </script>
+        </header>
+        <main>
+            <h1>Farmeur simulator</h1>
+            <button class="harvest-button">
+                <img src="./images/icon_du_jeu.png" alt="Recolter" class="button-icon">
+            </button>
+        </main>
+        <script>
+            // Remplacer les valeurs fictives par celles provenant de vos fichiers TypeScript
+            document.getElementById('niveau').textContent = joueurs.niveau;
+            document.getElementById('xp').textContent = joueurs.xp;
+            document.getElementById('argent').textContent = joueurs.monaie;
+            document.getElementById('ble').textContent = sacAdoss.remplissement;
+            document.getElementById('outil').textContent = outils.Nom;
+            document.getElementById('sac_a_dos').textContent = sacAdoss.Nom;
+        
+            const champElement = document.getElementById('champ');
+            const champIcon = document.getElementById('champ-icon');
+            const parcellesPleine = champs.tailles.parcellesPleine;
+            const parcellesVide = champs.parcellesVide;
+            const champState = parcellesPleine - parcellesVide;
+        
+            champElement.textContent = `${champState}/${parcellesPleine}`;
+        
+            if (champState === 0) {
+                champIcon.src = './images/wheat_icon_empty.png';
+            } else if (champState < parcellesPleine) {
+                champIcon.src = './images/wheat_icon_half.png';
+            } else {
+                champIcon.src = './images/wheat_icon_full.png';
+            }
+        </script>
 </body>
 </html>
