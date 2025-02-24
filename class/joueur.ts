@@ -1,12 +1,12 @@
 export class Joueur {
-    name = ""
-    monaie = 0
-    sacAdos = ""
-    outil = ""
-    xp = 0
-    xpPass = 100
-    niveau = 0
-    niveauPass = 10
+    public name = ""
+    public monaie = 0
+    public sacAdos = ""
+    public outil = ""
+    public xp = 0
+    public xpPass = 100
+    public niveau = 0
+    public niveauPass = 10
 
     constructor(name :string, monaie :number, niveau :number, xp :number){
         this.name = name

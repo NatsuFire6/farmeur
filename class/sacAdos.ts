@@ -1,14 +1,14 @@
 export class SacAdos{
-    tailles = new class taille{
-        hauteur = 1
-        longueur = 1
-        largeur = 1
-        stockage = this.hauteur * this.longueur * this.largeur
+    public tailles = new class taille{
+        public hauteur = 1
+        public longueur = 1
+        public largeur = 1
+        public stockage = this.hauteur * this.longueur * this.largeur
     }
-    remplissement = 0
-    Nom = ""
-    prixAmelioration = 10
-    niveau = 1
+    public remplissement = 0
+    public Nom = ""
+    public prixAmelioration = 10
+    public niveau = 1
 
     constructor(nom :string, longueur :number, largeur :number, hauteur :number){
         this.Nom = nom

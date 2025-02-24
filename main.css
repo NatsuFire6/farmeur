@@ -1,14 +1,25 @@
 body {
     font-family: 'Comic Sans MS', cursive, sans-serif; /* Style cartoon */
     background-color: #f0f8ff; /* Couleur de fond légère */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 10px;
     background-color: #ffebcd; /* Couleur de fond cartoon */
     border-bottom: 2px solid #8b4513; /* Bordure cartoon */
+}
+
+main {
+    flex: 1;
 }
 
 .container {
@@ -17,10 +28,14 @@ header {
     border-radius: 10px;
     background-color: #fffacd; /* Couleur de fond cartoon */
     box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
+    margin-bottom: 10px;
+    flex: 1 1 48%; /* Limiter à la moitié de l'écran */
+    box-sizing: border-box;
 }
 
 .profile-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -29,6 +44,7 @@ header {
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
+    object-fit: contain; /* Ensure images scale proportionally */
 }
 
 .profile-info {
@@ -45,6 +61,7 @@ header {
 .resources-list {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .resource-item {
@@ -57,6 +74,7 @@ header {
     width: 20px;
     height: 20px;
     margin-right: 5px;
+    object-fit: contain; /* Ensure images scale proportionally */
 }
 
 .xp {
@@ -83,4 +101,50 @@ header {
 .button-icon {
     width: 100px; /* Ajuster la taille de l'image */
     height: 100px;
+    object-fit: contain; /* Ensure images scale proportionally */
+}
+
+.action-button, .improve-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #ffebcd;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #8b4513;
+    transition: transform 0.1s;
+}
+
+.action-button:hover, .improve-button:hover {
+    background-color: #fffacd;
+}
+
+.action-button:active, .improve-button:active {
+    transform: scale(0.95);
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #ffebcd;
+    border-top: 2px solid #8b4513;
+    box-shadow: 0 -3px 0 #8b4513;
+}
+
+@media (max-width: 768px) {
+    .profile-item, .resource-item {
+        margin-left: 10px;
+    }
+
+    .button-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .container {
+        flex: 1 1 100%; /* Prendre toute la largeur de l'écran sur les petits écrans */
+    }
 }

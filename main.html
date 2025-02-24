@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
     <title>Farmeur simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="main.js" defer></script>
     <link rel="icon" type="image/png" href="./images/icon_du_jeu.png">
 </head>
 <body>
@@ -15,7 +18,7 @@
                 <img src="./images/wheat_money.png" alt="Argent" class="resource-icon"> Argent: <span id="argent"></span>€
             </div>
             <div class="resource-item">
-                <img src="./images/wheat_icon.png" alt="Ble" class="resource-icon"> Ble: <span id="ble"></span>
+                <img src="./images/wheat_icon.png" alt="Blé" class="resource-icon"> Blé: <span id="ble"></span>
             </div>
         </div>
         <div class="container profile-container">
@@ -33,34 +36,22 @@
         </header>
         <main>
             <h1>Farmeur simulator</h1>
-            <button class="harvest-button">
-                <img src="./images/icon_du_jeu.png" alt="Recolter" class="button-icon">
+            <button class="harvest-button" onclick="harvestAndRefresh()">
+                <img src="./images/icon_du_jeu.png" alt="Récolter" class="button-icon">
             </button>
+            <button class="action-button" onclick="farmerAndRefresh()">Farmer</button>
+            <button class="action-button" onclick="functionVendre()">Vendre</button>
+            <button class="action-button" onclick="functionReplanter()">Replanter</button>
         </main>
-        <script>
-            // Remplacer les valeurs fictives par celles provenant de vos fichiers TypeScript
-            document.getElementById('niveau').textContent = joueurs.niveau;
-            document.getElementById('xp').textContent = joueurs.xp;
-            document.getElementById('argent').textContent = joueurs.monaie;
-            document.getElementById('ble').textContent = sacAdoss.remplissement;
-            document.getElementById('outil').textContent = outils.Nom;
-            document.getElementById('sac_a_dos').textContent = sacAdoss.Nom;
-        
-            const champElement = document.getElementById('champ');
-            const champIcon = document.getElementById('champ-icon');
-            const parcellesPleine = champs.tailles.parcellesPleine;
-            const parcellesVide = champs.parcellesVide;
-            const champState = parcellesPleine - parcellesVide;
-        
-            champElement.textContent = `${champState}/${parcellesPleine}`;
-        
-            if (champState === 0) {
-                champIcon.src = './images/wheat_icon_empty.png';
-            } else if (champState < parcellesPleine) {
-                champIcon.src = './images/wheat_icon_half.png';
-            } else {
-                champIcon.src = './images/wheat_icon_full.png';
-            }
-        </script>
+        <footer>
+            <div class="improve-stats">
+                <div>Outil: <span id="outil-stats"></span></div>
+                <div>Sac à dos: <span id="sac_a_dos-stats"></span></div>
+                <div>Champ: <span id="champ-stats"></span></div>
+            </div>
+            <button class="improve-button" onclick="functionAmeliorerOutil()">Améliorer Outil</button>
+            <button class="improve-button" onclick="functionAmeliorerSacAdos()">Améliorer Sac à dos</button>
+            <button class="improve-button" onclick="functionAmeliorerChamp()">Améliorer Champ</button>
+        </footer>
 </body>
 </html>

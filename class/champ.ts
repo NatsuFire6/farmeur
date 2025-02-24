@@ -1,18 +1,18 @@
 export class Champ{
-    tailles = new class taille{
-        longueur = 5
-        largeur = 5
-        parcellesPleine = this.longueur * this.largeur
+    public tailles = new class taille{
+        public longueur = 5
+        public largeur = 5
+        public parcellesPleine = this.longueur * this.largeur
     }
-    parcellesVide = 0
-    typeDeBle = ""
-    prixDuBle = 2
-    fertiliter = 1
-    niveauAmeliorationTaille = 1
-    niveauAmeliorationFertiliter = 1
+    public parcellesVide = 0
+    public typeDeBle = ""
+    public prixDuBle = 2
+    public fertiliter = 1
+    public niveauAmeliorationTaille = 1
+    public niveauAmeliorationFertiliter = 1
 
-    prixAmeliorationTaille = 10
-    prixAmeliorationFertiliter = 10
+    public prixAmeliorationTaille = 10
+    public prixAmeliorationFertiliter = 10
 
     constructor(typeDeBle :string, longueur :number, largeur :number, fertiliter :number){
         this.typeDeBle = typeDeBle
