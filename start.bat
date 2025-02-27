@@ -1,11 +1,14 @@
 @echo off
 :: Réduire la fenêtre actuelle
-powershell -command "(Get-Process -Id $pid).MainWindowHandle | ForEach-Object { (New-Object -ComObject Shell.Application).MinimizeAll() }"
+::powershell -command "(Get-Process -Id $pid).MainWindowHandle | ForEach-Object { (New-Object -ComObject Shell.Application).MinimizeAll() }"
 
 :: Installer Deno si non installé
 if not exist "%USERPROFILE%\.deno\bin\deno.exe" (
     echo Installing Deno...
     powershell -command "iwr https://deno.land/x/install/install.ps1 -useb | iex"
+) else (
+    echo Checking for Deno updates...
+    deno upgrade
 )
 
 :: Ajouter Deno au PATH

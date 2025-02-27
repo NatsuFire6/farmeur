@@ -11,47 +11,70 @@
 <body>
     <header>
         <div class="container resources-container">
-            <div class="resource-item">
-                <img src="./images/level.png" alt="Niveau" class="resource-icon"> Niveau: <span id="niveau"></span> <span class="xp">(XP: <span id="xp"></span>)</span>
-            </div>
-            <div class="resource-item">
-                <img src="./images/wheat_money.png" alt="Argent" class="resource-icon"> Argent: <span id="argent"></span>€
-            </div>
-            <div class="resource-item">
-                <img src="./images/wheat_icon.png" alt="Blé" class="resource-icon"> Blé: <span id="ble"></span>
+            <div class="resources-list">
+                <div class="resource-item">
+                    <img src="./images/level.png" alt="Niveau" class="resource-icon"> Niveau: <span id="niveau"></span> <span class="xp">(XP: <span id="xp"></span>)</span>
+                </div>
+                <div class="resource-item">
+                    <img src="./images/wheat_money.png" alt="Argent" class="resource-icon"> Argent: <span id="argent"></span>€
+                </div>
+                <div class="resource-item">
+                    <img src="./images/wheat_icon.png" alt="Blé" class="resource-icon"> Blé récolté: <span id="ble"></span>
+                </div>
             </div>
         </div>
         <div class="container profile-container">
             <div class="profile-item">
                 Outil: <span id="outil"></span>
                 <img src="./images/main.png" alt="Outil" class="profile-icon">
+                <span id="outil-stats">stats1</span>
             </div>
             <div class="profile-item">
                 Sac à dos: <span id="sac_a_dos"></span>
                 <img src="./images/sac_a_dos.png" alt="Sac à dos" class="profile-icon">
-                <div class="profile-item">
-                    <span id="champ"></span> Champ: <img id="champ-icon" src="./images/wheat_icon_empty.png" alt="Champ" class="profile-icon">
+                <span id="sac_a_dos-stats">stats2</span>
+            </div>
+            <div class="profile-item">
+                <span id="champ"></span> Champ:
+                <img id="champ-icon" src="./images/icon.png" alt="Champ" class="profile-icon">
+                <span id="champ-stats">stats3</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>Farmeur simulator</h1>
+        <button class="harvest-button">
+            <img src="./images/icon_du_jeu.png" alt="Récolter" class="button-icon">
+        </button>
+        <button class="action-button" onclick="">Farmer</button>
+        <button class="action-button">Vendre</button>
+        <button class="action-button">Replanter</button>
+    </main>
+    <footer>
+        <div class="improve-section">
+            <h2>Améliorations</h2>
+            <div class="improve-items-container">
+                <div class="improve-item">
+                    <h3>Outil</h3>
+                    <button class="improve-button">Taille de la récolte</button>
+                    <p>Augmente la quantité de blé récolté à chaque fois.</p>
+                    <button class="improve-button">Matériaux de l'outil</button>
+                    <p>Améliore la durabilité et l'efficacité de l'outil.</p>
+                </div>
+                <div class="improve-item">
+                    <h3>Sac à dos</h3>
+                    <button class="improve-button">Taille du sac à dos</button>
+                    <p>Augmente la capacité de stockage du sac à dos.</p>
+                </div>
+                <div class="improve-item">
+                    <h3>Champ</h3>
+                    <button class="improve-button">Taille du champ</button>
+                    <p>Augmente la surface cultivable du champ.</p>
+                    <button class="improve-button">Fertilité du champ</button>
+                    <p>Améliore la qualité du sol pour des récoltes plus abondantes.</p>
                 </div>
             </div>
-        </header>
-        <main>
-            <h1>Farmeur simulator</h1>
-            <button class="harvest-button" onclick="harvestAndRefresh()">
-                <img src="./images/icon_du_jeu.png" alt="Récolter" class="button-icon">
-            </button>
-            <button class="action-button" onclick="farmerAndRefresh()">Farmer</button>
-            <button class="action-button" onclick="functionVendre()">Vendre</button>
-            <button class="action-button" onclick="functionReplanter()">Replanter</button>
-        </main>
-        <footer>
-            <div class="improve-stats">
-                <div>Outil: <span id="outil-stats"></span></div>
-                <div>Sac à dos: <span id="sac_a_dos-stats"></span></div>
-                <div>Champ: <span id="champ-stats"></span></div>
-            </div>
-            <button class="improve-button" onclick="functionAmeliorerOutil()">Améliorer Outil</button>
-            <button class="improve-button" onclick="functionAmeliorerSacAdos()">Améliorer Sac à dos</button>
-            <button class="improve-button" onclick="functionAmeliorerChamp()">Améliorer Champ</button>
-        </footer>
+        </div>
+    </footer>
 </body>
 </html>

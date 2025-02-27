@@ -20,6 +20,9 @@ header {
 
 main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
@@ -29,7 +32,6 @@ main {
     background-color: #fffacd; /* Couleur de fond cartoon */
     box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
     margin-bottom: 10px;
-    flex: 1 1 48%; /* Limiter à la moitié de l'écran */
     box-sizing: border-box;
 }
 
@@ -62,12 +64,18 @@ main {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: space-around; /* Aligner les ressources */
 }
 
 .resource-item {
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    margin: 10px; /* Ajouter de l'espace entre les ressources */
+    padding: 10px;
+    border: 2px solid #8b4513; /* Bordure cartoon */
+    border-radius: 10px;
+    background-color: #fffacd; /* Couleur de fond cartoon */
+    box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
 }
 
 .resource-icon {
@@ -127,11 +135,51 @@ main {
 
 footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding: 10px;
     background-color: #ffebcd;
     border-top: 2px solid #8b4513;
     box-shadow: 0 -3px 0 #8b4513;
+}
+
+.improve-section {
+    text-align: center; /* Centrer le texte dans les sections d'amélioration */
+    padding: 10px;
+    border: 2px solid #8b4513; /* Bordure cartoon */
+    border-radius: 10px;
+    background-color: #fffacd; /* Couleur de fond cartoon */
+    box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Prendre toute la largeur de l'écran */
+}
+
+.improve-items-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.improve-item {
+    border: 2px solid #8b4513; /* Bordure cartoon */
+    border-radius: 10px;
+    background-color: #fffacd; /* Couleur de fond cartoon */
+    box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
+    margin-bottom: 10px;
+    padding: 10px;
+    flex: 1 1 30%; /* Limiter à un tiers de l'écran */
+    box-sizing: border-box;
+    margin-right: 10px; /* Ajouter de l'espace entre les sections */
+}
+
+.improve-item:last-child {
+    margin-right: 0; /* Enlever la marge droite pour le dernier élément */
+}
+
+.improve-item h3 {
+    margin-top: 0;
 }
 
 @media (max-width: 768px) {
@@ -146,5 +194,10 @@ footer {
 
     .container {
         flex: 1 1 100%; /* Prendre toute la largeur de l'écran sur les petits écrans */
+    }
+
+    .improve-item {
+        flex: 1 1 100%; /* Prendre toute la largeur de l'écran sur les petits écrans */
+        margin-right: 0; /* Enlever la marge droite pour les petits écrans */
     }
 }
