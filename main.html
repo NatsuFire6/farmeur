@@ -5,7 +5,7 @@
     <title>Farmeur simulator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script src="main.js" defer></script>
+    <script src="farm.ts" defer></script>
     <link rel="icon" type="image/png" href="./images/icon_du_jeu.png">
 </head>
 <body>
@@ -13,31 +13,43 @@
         <div class="container resources-container">
             <div class="resources-list">
                 <div class="resource-item">
-                    <img src="./images/level.png" alt="Niveau" class="resource-icon"> Niveau: <span id="niveau"></span> <span class="xp">(XP: <span id="xp"></span>)</span>
+                    <img src="./images/level.png" alt="Niveau" class="resource-icon"> Niveau: <span id="niveau"> 0</span> <span class="xp">(XP: <span id="xp-actuelle">0</span>/<span id="xp-necessaire">100</span>)</span>
                 </div>
                 <div class="resource-item">
-                    <img src="./images/wheat_money.png" alt="Argent" class="resource-icon"> Argent: <span id="argent"></span>€
+                    <img src="./images/wheat_money.png" alt="Argent" class="resource-icon"> Argent: <span id="argent">0</span>€
                 </div>
                 <div class="resource-item">
-                    <img src="./images/wheat_icon.png" alt="Blé" class="resource-icon"> Blé récolté: <span id="ble"></span>
+                    <img src="./images/wheat_icon.png" alt="Blé" class="resource-icon"> Blé récolté: <span id="ble">0</span>
                 </div>
             </div>
         </div>
         <div class="container profile-container">
             <div class="profile-item">
-                Outil: <span id="outil"></span>
-                <img src="./images/main.png" alt="Outil" class="profile-icon">
-                <span id="outil-stats">stats1</span>
+                <div class="profile-icon-container">
+                    <img src="./images/main.png" alt="Outil" class="profile-icon">
+                    <span id="outil">Outil</span>
+                </div>
+                <div class="profile-stats-container">
+                    <span id="outil-stats">stats1</span>
+                </div>
             </div>
             <div class="profile-item">
-                Sac à dos: <span id="sac_a_dos"></span>
-                <img src="./images/sac_a_dos.png" alt="Sac à dos" class="profile-icon">
-                <span id="sac_a_dos-stats">stats2</span>
+                <div class="profile-icon-container">
+                    <img src="./images/sac_a_dos.png" alt="Sac à dos" class="profile-icon">
+                    <span id="sac_a_dos">Sac à dos</span>
+                </div>
+                <div class="profile-stats-container">
+                    <span id="sac_a_dos-stats">stats2</span>
+                </div>
             </div>
             <div class="profile-item">
-                <span id="champ"></span> Champ:
-                <img id="champ-icon" src="./images/icon.png" alt="Champ" class="profile-icon">
-                <span id="champ-stats">stats3</span>
+                <div class="profile-icon-container">
+                    <img id="champ-icon" src="./images/icon.png" alt="Champ" class="profile-icon">
+                    <span id="champ">Champ</span>
+                </div>
+                <div class="profile-stats-container">
+                    <span id="champ-stats">stats3</span>
+                </div>
             </div>
         </div>
     </header>

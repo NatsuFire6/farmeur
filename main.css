@@ -39,6 +39,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-around; /* Aligner les éléments du profil */
 }
 
 .profile-icon {
@@ -57,7 +58,36 @@ main {
 .profile-item {
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    margin: 0 10px; /* Ajouter de l'espace entre les éléments du profil */
+    padding: 0;
+    border: none; /* Enlever la bordure */
+    background-color: transparent; /* Enlever la couleur de fond */
+    position: relative; /* Pour positionner l'image de séparation */
+}
+
+.profile-item:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 30px; /* Ajuster la largeur de l'image */
+    height: 50px; /* Ajuster la hauteur de l'image */
+    background-image: url('./images/separation_planche.png'); /* Utiliser l'image de bois cassé */
+    background-size: contain; /* Ajuster la taille de l'image pour qu'elle soit contenue dans l'élément */
+    background-repeat: no-repeat; /* Ne pas répéter l'image */
+    margin-left: 1em;
+    margin-right: -1em;
+
+}
+
+.profile-icon-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.profile-stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .resources-list {
@@ -70,12 +100,23 @@ main {
 .resource-item {
     display: flex;
     align-items: center;
-    margin: 10px; /* Ajouter de l'espace entre les ressources */
-    padding: 10px;
-    border: 2px solid #8b4513; /* Bordure cartoon */
-    border-radius: 10px;
-    background-color: #fffacd; /* Couleur de fond cartoon */
-    box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
+    margin: 0 10px; /* Ajouter de l'espace entre les ressources */
+    padding: 0;
+    border: none; /* Enlever la bordure */
+    background-color: transparent; /* Enlever la couleur de fond */
+    position: relative; /* Pour positionner l'image de séparation */
+}
+
+.resource-item:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 30px; /* Ajuster la largeur de l'image */
+    height: 50px; /* Ajuster la hauteur de l'image */
+    background-image: url('./images/separation_planche.png'); /* Utiliser l'image de bois cassé */
+    background-size: contain; /* Ajuster la taille de l'image pour qu'elle soit contenue dans l'élément */
+    background-repeat: no-repeat; /* Ne pas répéter l'image */
+    margin-left: 1em;
+    margin-right: -1em;
 }
 
 .resource-icon {
@@ -145,10 +186,6 @@ footer {
 .improve-section {
     text-align: center; /* Centrer le texte dans les sections d'amélioration */
     padding: 10px;
-    border: 2px solid #8b4513; /* Bordure cartoon */
-    border-radius: 10px;
-    background-color: #fffacd; /* Couleur de fond cartoon */
-    box-shadow: 5px 5px 0 #8b4513; /* Ombre cartoon */
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
