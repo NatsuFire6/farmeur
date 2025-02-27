@@ -13,11 +13,8 @@ export class Joueur {
     public niveau = 0
     public niveauPass = 10
 
-    constructor(name :string, monaie :number, niveau :number, xp :number){
+    constructor(name :string){
         this.name = name
-        this.niveau = niveau
-        this.xp = xp
-        this.monaie = monaie
     }
 
     mettreUnNom(nom :string){

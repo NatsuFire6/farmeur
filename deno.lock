@@ -1,0 +1,11 @@
+{
+  "version": "4",
+  "remote": {
+    "https://deno.land/x/webui@2.5.3/deps.ts": "4ed539a8a26d1c7002c10cb580895257553f6a91af6a8ac4682cd6aecc980f24",
+    "https://deno.land/x/webui@2.5.3/mod.ts": "15164acd86d67b02c4b3577c0a2d2bfa6b9a5c8c8c2914434862b09a96db4116",
+    "https://deno.land/x/webui@2.5.3/src/lib.ts": "8f7f455c985c60ce59e080f6fbcf9c14dae68561fd37d4402cd7fc3645d238c0",
+    "https://deno.land/x/webui@2.5.3/src/types.ts": "5c1a4529c6f986c0766a7fdc61347ed8e914cbc2867a049ea31f07f4d970ec02",
+    "https://deno.land/x/webui@2.5.3/src/utils.ts": "3faa3f9290de3288f506feb94af14634dd791fd1170a508c610ace033b68aaae",
+    "https://deno.land/x/webui@2.5.3/src/webui.ts": "580783c7df25893e5340fa0be6098619052619b482afc0418b3599dae3a73e99"
+  }
+}

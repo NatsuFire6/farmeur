@@ -19,4 +19,4 @@ deno cache main.ts
 
 :: Ouvrir une nouvelle fenêtre CMD
 cd C:\Users\LA TOUR MSI DU TURFU\Desktop\github\farmeur
-deno run --allow-read --allow-ffi --allow-net --allow-env --allow-run farm.ts
+deno run --allow-read --allow-ffi --allow-net --allow-env --allow-run farm.ts 2> error.log

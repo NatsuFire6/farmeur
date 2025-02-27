@@ -14,27 +14,49 @@ async function functionHTML(): Promise<void> {
     const myWindow = new WebUI();
     try {
         const htmlContent: string = await Deno.readTextFile("./main.html");
+        console.log("HTML content loaded successfully.");        
         return myWindow.show(htmlContent);
     } catch (error) {
+        await logError(error as Error);
         return console.error("Erreur lors de la lecture du fichier HTML :", error);
     }
 }
-
-//const names = functionChoisirNom();
-export const joueurs = new Joueur("names",0,0,0);
-await functionHTML();
-
-function updateUI() {
-    document.getElementById("niveau").textContent = joueurs.niveau.toString();
-    document.getElementById("xp-actuelle").textContent = joueurs.xp.toString();
-    document.getElementById("xp-necessaire").textContent = joueurs.xpPass.toString();
-    document.getElementById("argent").textContent = joueurs.monaie.toString();
-    document.getElementById("ble").textContent = joueurs.sacAdos.remplissement.toString();
-    document.getElementById("outil-stats").textContent = [joueurs.outil.tailleDeLaRecolte.toString()];
-    document.getElementById("sac_a_dos-stats").textContent = [joueurs.sacAdos.remplissement,"/",joueurs.sacAdos.tailles.stockage.toString()];
-    document.getElementById("champ-stats").textContent = [(joueurs.champ.tailles.parcellesPleine - joueurs.champ.parcellesVide).toString,"/",joueurs.champ.tailles.parcellesPleine.toString()];
+// Fonction pour nettoyer les séquences d'échappement ANSI
+function cleanAnsiSequences(input: string): string {
+    // eslint-disable-next-line no-control-regex
+    return input.replace(/\x1b\[[0-9;]*m/g, '');
+}
+// Fonction pour enregistrer les erreurs dans un fichier de log
+async function logError(error: Error) {
+    const encoder = new TextEncoder();
+    const cleanError = cleanAnsiSequences(error.toString());
+    const data = encoder.encode(`[${new Date().toISOString()}] ${cleanError}\n`);
+    await Deno.writeFile("error.log", data, { append: true });
 }
 
+//const names = functionChoisirNom();
+export const joueurs = new Joueur("names");
+await functionHTML();
+console.log(`\nBienvenue ${joueurs.name} !`)
+
+function updateUI() {
+    const elementsToUpdate = [
+        { id: "niveau", value: joueurs.niveau.toString() },
+        { id: "xp-actuelle", value: joueurs.xp.toString() },
+        { id: "xp-necessaire", value: joueurs.xpPass.toString() },
+        { id: "argent", value: joueurs.monaie.toString() },
+        { id: "ble", value: joueurs.sacAdos.remplissement.toString() },
+        { id: "outil-stats", value: joueurs.outil.tailleDeLaRecolte.toString() },
+        { id: "sac_a_dos-stats", value: `${joueurs.sacAdos.remplissement}/${joueurs.sacAdos.tailles.stockage}` },
+        { id: "champ-stats", value: `${joueurs.champ.tailles.parcellesPleine - joueurs.champ.parcellesVide}/${joueurs.champ.tailles.parcellesPleine}` }
+    ];
+    elementsToUpdate.forEach(element => {
+        const domElement = document.getElementById(element.id);
+        if (domElement) {
+            domElement.textContent = element.value;
+        }
+    });
+}
 //console.log(`sac a dos prix 1 : ${joueurs.sacAdos.prixAmelioration}\nprix 2 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}\nprix 3 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}\nprix 4 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}\nprix 5 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}\nprix 6 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}\nprix 7 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}\nprix 8 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}\nprix 9 : ${joueurs.sacAdos.augmenterStockage(),joueurs.sacAdos.prixAmelioration}`)
 //console.log(`taille champ prix 1 : ${joueurs.champ.prixAmeliorationTaille}\ntaille champ prix 2 : ${joueurs.champ.augmenterTaille(),joueurs.champ.prixAmeliorationTaille}\ntaille champ prix 3 : ${joueurs.champ.augmenterTaille(),joueurs.champ.prixAmeliorationTaille}\ntaille champ prix 4 : ${joueurs.champ.augmenterTaille(),joueurs.champ.prixAmeliorationTaille}\ntaille champ prix 5 : ${joueurs.champ.augmenterTaille(),joueurs.champ.prixAmeliorationTaille}\ntaille champ prix 6 : ${joueurs.champ.augmenterTaille(),joueurs.champ.prixAmeliorationTaille}`)
 //console.log(`fertiliter prix 1 : ${joueurs.champ.prixAmeliorationFertiliter}\nprix 2 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}\nprix 3 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}\nprix 4 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}\nprix 5 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}\nprix 6 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}\nprix 7 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}\nprix 8 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}\nprix 9 : ${joueurs.champ.augmenterLaFertiliter(),joueurs.champ.prixAmeliorationFertiliter}`)
@@ -55,7 +77,7 @@ function jeu(faire:number){
         if(faire === 1){
             functionAmeliorerOutil()
         }else if(faire === 2){
-            functionAmeliorerSacAdos()
+            functionAmeliorerSacAdos() 
         }else if(faire === 3){
             functionAmeliorerChamp()
         }else{
