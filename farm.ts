@@ -6,8 +6,6 @@ import { functionAmeliorerOutil } from "./functions/functionAmeliorerOutil.ts";
 import { functionReplanter } from "./functions/functionReplanter.ts";
 import { functionFarmer } from "./functions/functionFarmer.ts";
 import { functionVendre } from "./functions/functionVendre.ts";
-//import { functionChoisirNom } from "../functions/functionChoisirNom.ts";
-import { functionFaireEnNombre } from "./functions/functionFaireEnNombre.ts";
 
 import { WebUI } from "https://deno.land/x/webui@2.5.3/mod.ts";
 async function functionHTML(): Promise<void> {
