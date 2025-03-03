@@ -5,13 +5,14 @@ import { SacAdos } from "./sacAdos.ts";
 export class Joueur {
     public name = ""
     public monaie = 0
-    public sacAdos :SacAdos = new SacAdos("tout petit sac",1,1,1)
-    public outil :Outil = new Outil("mains",1)
-    public champ :Champ = new Champ("Blé", 2, 2, 1);
+    public sacAdos :SacAdos = new SacAdos()
+    public outil :Outil = new Outil()
+    public champ :Champ = new Champ();
     public xp = 0
     public xpPass = 100
     public niveau = 0
     public niveauPass = 10
+    public bleRecolter = 0
 
     constructor(name :string){
         this.name = name
@@ -36,5 +37,8 @@ export class Joueur {
     }
     modifierOutil(nouvelOutil :Outil){
         this.outil = nouvelOutil
+    }
+    augmenterBle(deCbm :number){
+        this.bleRecolter += deCbm
     }
 }

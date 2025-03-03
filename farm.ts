@@ -2,10 +2,8 @@ import { Joueur } from "./class/joueur.ts";
 
 import { functionAmeliorerSacAdos } from "./functions/functionAmeliorerSacAdos.ts";
 import { functionAmeliorerFertiliterChamp, functionAmeliorerTailleChamp } from "./functions/functionAmeliorerChamp.ts";
-import { functionAmeliorerOutil } from "./functions/functionAmeliorerOutil.ts";
-import { functionReplanter } from "./functions/functionReplanter.ts";
-import { functionFarmer } from "./functions/functionFarmer.ts";
-import { functionVendre } from "./functions/functionVendre.ts";
+import { functionAmeliorerMateriauxOutil, functionAmeliorerTailleOutil } from "./functions/functionAmeliorerOutil.ts";
+import { functionReplanter,functionFarmer,functionVendre } from "./functions/functionAction.ts";
 
 import { WebUI } from "https://deno.land/x/webui@2.5.3/mod.ts";
 async function functionHTML(): Promise<void> {
@@ -17,10 +15,12 @@ async function functionHTML(): Promise<void> {
         myWindow.bind("functionFarmer", functionFarmer);
         myWindow.bind("functionVendre", functionVendre);
         myWindow.bind("functionReplanter", functionReplanter);
-        myWindow.bind("functionAmeliorerOutil", functionAmeliorerOutil);
+        myWindow.bind("functionAmeliorerTailleOutil", functionAmeliorerTailleOutil);
+        myWindow.bind("functionAmeliorerMateriauxOutil", functionAmeliorerMateriauxOutil);
         myWindow.bind("functionAmeliorerSacAdos", functionAmeliorerSacAdos);
         myWindow.bind("functionAmeliorerTailleChamp", functionAmeliorerTailleChamp);
-        myWindow.bind("functionAmeliorerFertiliterChamp", functionAmeliorerFertiliterChamp);       
+        myWindow.bind("functionAmeliorerFertiliterChamp", functionAmeliorerFertiliterChamp);
+        myWindow.bind("impossibleAction", impossibleAction);
         return myWindow.show(htmlContent);
     } catch (error) {
         return console.error("Erreur lors de la lecture du fichier HTML :", error);
@@ -38,10 +38,21 @@ export function getValues() {
         { id: "xp-actuelle", value: joueurs.xp.toString() },
         { id: "xp-necessaire", value: joueurs.xpPass.toString() },
         { id: "argent", value: joueurs.monaie.toString() },
-        { id: "ble", value: joueurs.sacAdos.remplissement.toString() },
-        { id: "outil-stats", value: joueurs.outil.tailleDeLaRecolte.toString() },
-        { id: "sac_a_dos-stats", value: `${joueurs.sacAdos.remplissement}/${joueurs.sacAdos.tailles.stockage}` },
-        { id: "champ-stats", value: `${joueurs.champ.tailles.parcellesPleine - joueurs.champ.parcellesVide}/${joueurs.champ.tailles.parcellesPleine}` }
+        { id: "bleRecolter", value: joueurs.bleRecolter.toString() },
+        { id: "outilName", value: joueurs.outil.Nom.toString() },
+        { id: "outilMaterial", value: joueurs.outil.Material.toString() },
+        { id: "outilTaille", value: joueurs.outil.tailleDeLaRecolte.toString()},
+        { id: "sacAdosStats", value: `${joueurs.sacAdos.remplissement}/${joueurs.sacAdos.tailles.stockage}` },
+        { id: "sacAdosName", value: joueurs.sacAdos.Nom.toString() },
+        { id: "typeDeBle", value: joueurs.champ.typeDeBle.toString() },
+        { id: "champTaille", value: `${joueurs.champ.tailles.parcellesPleine - joueurs.champ.parcellesVide}/${joueurs.champ.tailles.parcellesPleine}` },
+        { id: "champFertiliter", value : joueurs.champ.fertiliter.toString() },
+        { id: "prixAmeliorerTailleOutil", value: joueurs.outil.prixAmeliorationTaille.toString() },
+        { id: "prixAmeliorerMateriauxOutil", value: joueurs.outil.prixAmeliorationMateriaux.toString() },
+        { id: "prixAmeliorerSacAdos", value: joueurs.sacAdos.prixAmelioration.toString() },
+        { id: "prixAmeliorerTailleChamp", value: joueurs.champ.prixAmeliorationTaille.toString() },
+        { id: "prixAmeliorerFertiliterChamp", value: joueurs.champ.prixAmeliorationFertiliter.toString() },
     ]);
-    
 }
+
+export function impossibleAction() {return false}

@@ -20,3 +20,7 @@ deno cache main.ts
 :: Ouvrir une nouvelle fenêtre CMD
 ::cd main
 deno run --allow-read --allow-write --allow-ffi --allow-net --allow-env --allow-run farm.ts 2> error.log
+
+
+::avoir le fichier .exe
+::deno compile --allow-read --allow-write --allow-ffi --allow-net --allow-env --allow-run farm.ts

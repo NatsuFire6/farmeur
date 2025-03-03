@@ -20,7 +20,7 @@
                     <img src="./images/wheat_money.png" alt="Argent" class="resource-icon"> Argent: <span id="argent">0</span>€
                 </div>
                 <div class="resource-item">
-                    <img src="./images/wheat_icon.png" alt="Blé" class="resource-icon"> Blé récolté: <span id="ble">0</span>
+                    <img src="./images/wheat_icon.png" alt="Blé" class="resource-icon"> Blé récolté: <span id="bleRecolter">0</span>
                 </div>
             </div>
         </div>
@@ -30,26 +30,17 @@
                     <img src="./images/main.png" alt="Outil" class="profile-icon">
                     <span id="outil">Outil</span>
                 </div>
-                <div class="profile-stats-container">
-                    <span id="outil-stats">stats1</span>
-                </div>
             </div>
             <div class="profile-item">
                 <div class="profile-icon-container">
                     <img src="./images/sac_a_dos.png" alt="Sac à dos" class="profile-icon">
                     <span id="sac_a_dos">Sac à dos</span>
                 </div>
-                <div class="profile-stats-container">
-                    <span id="sac_a_dos-stats">stats2</span>
-                </div>
             </div>
             <div class="profile-item">
                 <div class="profile-icon-container">
                     <img id="champ-icon" src="./images/icon.png" alt="Champ" class="profile-icon">
                     <span id="champ">Champ</span>
-                </div>
-                <div class="profile-stats-container">
-                    <span id="champ-stats">stats3</span>
                 </div>
             </div>
         </div>
@@ -59,32 +50,37 @@
         <button class="harvest-button">
             <img src="./images/icon_du_jeu.png" alt="Récolter" class="button-icon">
         </button>
-        <button class="action-button" onclick="farmer()">Farmer</button>
-        <button class="action-button" onclick="vendre()">Vendre</button>
-        <button class="action-button" onclick="replanter()">Replanter</button>
+        <button class="action-button" id="boutonFarmer" onclick="farmer()">Farmer</button>
+        <button class="action-button" id="boutonVendre" onclick="vendre()">Vendre</button>
+        <button class="action-button" id="boutonReplanter" onclick="replanter()">Replanter</button>
     </main>
     <footer>
         <div class="improve-section">
             <h2>Améliorations</h2>
             <div class="improve-items-container">
                 <div class="improve-item">
-                    <h3>Outil</h3>
-                    <button class="improve-button" onclick="ameliorerOutil()">Taille de la récolte</button>
-                    <p>Augmente la quantité de blé récolté à chaque fois.</p>
-                    <button class="improve-button" onclick="ameliorerOutil()">Matériaux de l'outil</button>
-                    <p>Améliore la durabilité et l'efficacité de l'outil.</p>
+                    <h3>Outil : <span id="outilName"></span></h3>
+                    <button class="improve-button" id="boutonAmeliorerTailleOutil" onclick="ameliorerTailleOutil()">Taille de la récolte : <span id="prixAmeliorerTailleOutil"></span>€</button>
+                    <p>Augmente la quantité de blé récolté de 1.</p>
+                    <p>Taille actuelle : <span id="outilTaille"></span></p>
+                    <button class="improve-button" id="boutonAmeliorerMateriauxOutil" onclick="ameliorerMateriauxOutil()">Matériaux de l'outil : <span id="prixAmeliorerMateriauxOutil"></span>€</button>
+                    <p>Améliore la prestance de l'outil.</p>
+                    <p>Material actuelle : <span id="outilMaterial"></span></p>
                 </div>
                 <div class="improve-item">
-                    <h3>Sac à dos</h3>
-                    <button class="improve-button" onclick="ameliorerSacAdos()">Taille du sac à dos</button>
+                    <h3>Sac à dos : <span id="sacAdosName"></span></h3>
+                    <button class="improve-button" id="boutonAmeliorerSacAdos" onclick="ameliorerSacAdos()">Taille du sac à dos : <span id="prixAmeliorerSacAdos"></span>€</button>
                     <p>Augmente la capacité de stockage du sac à dos.</p>
+                    <p>Stockage actuelle : <span id="sacAdosStats"></span></p>
                 </div>
                 <div class="improve-item">
-                    <h3>Champ</h3>
-                    <button class="improve-button" onclick="ameliorerTailleChamp()">Taille du champ</button>
+                    <h3>Champ de : <span id="typeDeBle"></span></h3>
+                    <button class="improve-button" id="boutonAmeliorerTailleChamp" onclick="ameliorerTailleChamp()">Taille du champ : <span id="prixAmeliorerTailleChamp"></span>€</button>
                     <p>Augmente la surface cultivable du champ.</p>
-                    <button class="improve-button" onclick="ameliorerFertiliterChamp()">Fertilité du champ</button>
+                    <p>Taille actuelle : <span id="champTaille"></span> parcelles</p>
+                    <button class="improve-button" id="boutonAmeliorerFertiliterChamp" onclick="ameliorerFertiliterChamp()">Fertilité du champ : <span id="prixAmeliorerFertiliterChamp"></span>€</button>
                     <p>Améliore la qualité du sol pour des récoltes plus abondantes.</p>
+                    <p>Fertilité actuelle : <span id="champFertiliter"></span></p>
                 </div>
             </div>
         </div>

@@ -219,6 +219,15 @@ footer {
     margin-top: 0;
 }
 
+@keyframes actionImpossible {
+    0%,50%,100%{
+        background-color: #fffacd;
+    }
+    25%,75%{
+        background-color: #ff5031;
+    }
+}
+
 @media (max-width: 768px) {
     .profile-item, .resource-item {
         margin-left: 10px;
