@@ -5,7 +5,8 @@
     <title>Farmeur simulator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script src="farm.ts" defer></script>
+    <script src="webui.js" defer></script>
+    <script src="main.js" defer></script>
     <link rel="icon" type="image/png" href="./images/icon_du_jeu.png">
 </head>
 <body>
@@ -58,9 +59,9 @@
         <button class="harvest-button">
             <img src="./images/icon_du_jeu.png" alt="Récolter" class="button-icon">
         </button>
-        <button class="action-button" onclick="">Farmer</button>
-        <button class="action-button">Vendre</button>
-        <button class="action-button">Replanter</button>
+        <button class="action-button" onclick="farmer()">Farmer</button>
+        <button class="action-button" onclick="vendre()">Vendre</button>
+        <button class="action-button" onclick="replanter()">Replanter</button>
     </main>
     <footer>
         <div class="improve-section">
@@ -68,21 +69,21 @@
             <div class="improve-items-container">
                 <div class="improve-item">
                     <h3>Outil</h3>
-                    <button class="improve-button">Taille de la récolte</button>
+                    <button class="improve-button" onclick="ameliorerOutil()">Taille de la récolte</button>
                     <p>Augmente la quantité de blé récolté à chaque fois.</p>
-                    <button class="improve-button">Matériaux de l'outil</button>
+                    <button class="improve-button" onclick="ameliorerOutil()">Matériaux de l'outil</button>
                     <p>Améliore la durabilité et l'efficacité de l'outil.</p>
                 </div>
                 <div class="improve-item">
                     <h3>Sac à dos</h3>
-                    <button class="improve-button">Taille du sac à dos</button>
+                    <button class="improve-button" onclick="ameliorerSacAdos()">Taille du sac à dos</button>
                     <p>Augmente la capacité de stockage du sac à dos.</p>
                 </div>
                 <div class="improve-item">
                     <h3>Champ</h3>
-                    <button class="improve-button">Taille du champ</button>
+                    <button class="improve-button" onclick="ameliorerTailleChamp()">Taille du champ</button>
                     <p>Augmente la surface cultivable du champ.</p>
-                    <button class="improve-button">Fertilité du champ</button>
+                    <button class="improve-button" onclick="ameliorerFertiliterChamp()">Fertilité du champ</button>
                     <p>Améliore la qualité du sol pour des récoltes plus abondantes.</p>
                 </div>
             </div>

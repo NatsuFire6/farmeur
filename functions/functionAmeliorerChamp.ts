@@ -1,31 +1,18 @@
-import { zeroNull } from "./functionFaireEnNombre.ts";
-import { joueurs } from "../farm.ts";
+import { getValues, joueurs } from "../farm.ts";
 
-export function functionAmeliorerChamp(){
-    const faire = zeroNull("\nQue voulez vous améliorer dans votre \x1b[34mchamp\x1b[0m ?\n\x1b[34mtaille du champ\x1b[0m : "+joueurs.champ.prixAmeliorationTaille+"€\n\x1b[34mfertiliter\x1b[0m : "+joueurs.champ.prixAmeliorationFertiliter+"€\n")
-    if(faire == "1" || faire.toLowerCase() ==="taille du champ"){
-        const prix = joueurs.champ.prixAmeliorationTaille
-        if(joueurs.monaie >= prix){
-            joueurs.monaie -= prix
-            joueurs.champ.augmenterTaille()
-            console.log(`\x1b[32mVous venez d'augmenter la taille de votre champ à ${joueurs.champ.tailles.parcellesPleine} \x1b[0mpour\x1b[31m ${prix}€\x1b[0m`)
-            console.log(`Long : ${joueurs.champ.tailles.longueur}\nLarg : ${joueurs.champ.tailles.largeur}`)
-        }else{
-            console.log(`\n\x1b[31mVous n'avez pas assez d'argent (${joueurs.monaie}/${prix}€) !\x1b[0m\n`)
-        }
-    }else if(faire == "2" || faire.toLowerCase() ==="fertiliter"){
-        const prix = joueurs.champ.prixAmeliorationFertiliter
-        if(joueurs.monaie >= prix){
-            joueurs.monaie -= prix
-            joueurs.champ.augmenterLaFertiliter()
-            console.log(`\x1b[32mVous venez d'augmenter la fertiliter de votre champ à ${joueurs.champ.fertiliter} \x1b[0mpour\x1b[31m ${prix}€\x1b[0m`)
-        }else{
-            console.log(`\n\x1b[31mVous n'avez pas assez d'argent (${joueurs.monaie}/${prix}€) !\x1b[0m\n`)
-        }
-    }else if (faire == "0"){
-        return
-    }else{
-        console.log("\x1b[96mVeuillez entrer quelque chose de correcte (0, 1 ou taille de la recolte) !\x1b[0m")
-        functionAmeliorerChamp()
+export function functionAmeliorerTailleChamp(){
+    const prix = joueurs.champ.prixAmeliorationTaille
+    if(joueurs.monaie >= prix){
+        joueurs.monaie -= prix
+        joueurs.champ.augmenterTaille()
     }
+    return getValues()
+};
+export function functionAmeliorerFertiliterChamp(){
+    const prix = joueurs.champ.prixAmeliorationFertiliter
+    if(joueurs.monaie >= prix){
+        joueurs.monaie -= prix
+        joueurs.champ.augmenterLaFertiliter()
+    }
+    return getValues()
 }
