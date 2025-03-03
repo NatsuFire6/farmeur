@@ -23,21 +23,8 @@ async function functionHTML(): Promise<void> {
         myWindow.bind("functionAmeliorerFertiliterChamp", functionAmeliorerFertiliterChamp);       
         return myWindow.show(htmlContent);
     } catch (error) {
-        await logError(error as Error);
         return console.error("Erreur lors de la lecture du fichier HTML :", error);
     }
-}
-// Fonction pour nettoyer les séquences d'échappement ANSI
-function cleanAnsiSequences(input: string): string {
-    // eslint-disable-next-line no-control-regex
-    return input.replace(/\x1b\[[0-9;]*m/g, '');
-}
-// Fonction pour enregistrer les erreurs dans un fichier de log
-async function logError(error: Error) {
-    const encoder = new TextEncoder();
-    const cleanError = cleanAnsiSequences(error.toString());
-    const data = encoder.encode(`[${new Date().toISOString()}] ${cleanError}\n`);
-    await Deno.writeFile("error.log", data, { append: true });
 }
 
 //const names = functionChoisirNom();
