@@ -1,7 +1,7 @@
 import { getValues, impossibleAction, joueurs } from "../farm.ts";
 
 export function functionAmeliorerTailleOutil(){
-    if(joueurs.monaie >= joueurs.outil.prixAmeliorationTaille && joueurs.outil.tailleDeLaRecolte < joueurs.outil.nextLevelMateriaux + 2){
+    if(joueurs.monaie >= joueurs.outil.prixAmeliorationTaille && joueurs.outil.tailleDeLaRecolte < joueurs.outil.nextLevelMateriaux + 2 && joueurs.sacAdos.tailles.stockage > joueurs.outil.tailleDeLaRecolte){
         joueurs.monaie -= joueurs.outil.prixAmeliorationTaille
         joueurs.outil.augmenterLaTailleDeLaRecolte()
         return getValues()

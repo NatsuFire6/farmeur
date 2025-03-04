@@ -1,6 +1,6 @@
-function updateValues (){
+function updateValues(){
     updateUI()
-    setTimeout(updateValues);
+    requestAnimationFrame(updateValues());
 }
 updateValues()
 
