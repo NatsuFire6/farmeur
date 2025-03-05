@@ -3,7 +3,7 @@ import { Joueur } from "./class/joueur.ts";
 import { functionAmeliorerSacAdos } from "./functions/functionAmeliorerSacAdos.ts";
 import { functionAmeliorerFertiliterChamp, functionAmeliorerTailleChamp } from "./functions/functionAmeliorerChamp.ts";
 import { functionAmeliorerMateriauxOutil, functionAmeliorerTailleOutil } from "./functions/functionAmeliorerOutil.ts";
-import { functionReplanter,functionFarmer,functionVendre } from "./functions/functionAction.ts";
+import { functionReplanter,functionFarmer,functionVendre, functionAutoFarmer, functionAcheterEtActiverDesactiverAutoFarmer } from "./functions/functionAction.ts";
 
 import { WebUI } from "https://deno.land/x/webui@2.5.3/mod.ts";
 async function functionHTML(): Promise<void> {
@@ -13,6 +13,8 @@ async function functionHTML(): Promise<void> {
         console.log("HTML content loaded successfully.");
         myWindow.bind("getValues", getValues);
         myWindow.bind("functionFarmer", functionFarmer);
+        myWindow.bind("functionAutoFarmer",functionAutoFarmer)
+        myWindow.bind("functionAcheterEtActiverDesactiverAutoFarmer",functionAcheterEtActiverDesactiverAutoFarmer)
         myWindow.bind("functionVendre", functionVendre);
         myWindow.bind("functionReplanter", functionReplanter);
         myWindow.bind("functionAmeliorerTailleOutil", functionAmeliorerTailleOutil);
@@ -54,6 +56,8 @@ export function getValues() {
         { id: "prixAmeliorerSacAdos", value: joueurs.sacAdos.prixAmelioration.toString() },
         { id: "prixAmeliorerTailleChamp", value: joueurs.champ.prixAmeliorationTaille.toString() },
         { id: "prixAmeliorerFertiliterChamp", value: joueurs.champ.prixAmeliorationFertiliter.toString() },
+        { id: "autoFarmerAcheter", value: joueurs.champ.autoRecolteAcheter},
+        { id: "autoFarmerActiver", value: joueurs.champ.autoRecolte}
     ]);
 }
 

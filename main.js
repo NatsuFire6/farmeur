@@ -1,8 +1,4 @@
-function updateValues(){
-    updateUI()
-    requestAnimationFrame(updateValues());
-}
-updateValues()
+arg2 = setInterval(updateUI, 500, JSON.parse(getValues()));
 
 function updateUI(elementsToUpdate) {
     elementsToUpdate.forEach(element => {
@@ -22,6 +18,26 @@ async function farmer(){
         actionImpossible(document.getElementById('boutonFarmer'));
     }
 }
+
+async function buyAutoFarmer(){
+    const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoFarmer());
+    const autoFarmerAcheter = values.find((element) => element.id === "autoFarmerAcheter");
+    const autoFarmerActiver = values.find((element) => element.id === "autoFarmerActiver");
+    let arg
+    if(values != false && autoFarmerAcheter.value){
+        replaceBouton(document.querySelector('#boutonBuyAutoFarmer span'));
+        if(autoFarmerActiver.value){
+            changeColorGreen(document.getElementById('boutonBuyAutoFarmer'))
+            arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
+        }else{
+            clearInterval(arg)
+            changeColorRed(document.getElementById('boutonBuyAutoFarmer'))
+        }
+    }else{
+        actionImpossible(document.getElementById('boutonBuyAutoFarmer'));
+    }
+}
+
 async function vendre(){
     const values = JSON.parse(await functionVendre());
     if(values != false){
@@ -42,6 +58,7 @@ async function ameliorerTailleOutil(){
     const values = JSON.parse(await functionAmeliorerTailleOutil());
     if(values != false){
         updateUI(values);
+        actionEffectuer(document.getElementById('boutonAmeliorerTailleOutil'));
     }else{
         actionImpossible(document.getElementById('boutonAmeliorerTailleOutil'));
     }
@@ -50,6 +67,7 @@ async function ameliorerMateriauxOutil(){
     const values = JSON.parse(await functionAmeliorerMateriauxOutil());
     if(values != false){
         updateUI(values);
+        actionEffectuer(document.getElementById('boutonAmeliorerMateriauxOutil'));
     }else{
         actionImpossible(document.getElementById('boutonAmeliorerMateriauxOutil'));
     }
@@ -58,6 +76,7 @@ async function ameliorerSacAdos(){
     const values = JSON.parse(await functionAmeliorerSacAdos());
     if(values != false){
         updateUI(values);
+        actionEffectuer(document.getElementById('boutonAmeliorerSacAdos'));
     }else{
         actionImpossible(document.getElementById('boutonAmeliorerSacAdos'));
     }
@@ -66,6 +85,7 @@ async function ameliorerTailleChamp(){
     const values = JSON.parse(await functionAmeliorerTailleChamp());
     if(values != false){
         updateUI(values);
+        actionEffectuer(document.getElementById('boutonAmeliorerTailleChamp'));
     }else{
         actionImpossible(document.getElementById('boutonAmeliorerTailleChamp'));
     }
@@ -74,6 +94,7 @@ async function ameliorerFertiliterChamp(){
     const values = JSON.parse(await functionAmeliorerFertiliterChamp());
     if(values != false){
         updateUI(values);
+        actionEffectuer(document.getElementById('boutonAmeliorerFertiliterChamp'));
     }else{
         actionImpossible(document.getElementById('boutonAmeliorerFertiliterChamp'));
     }
@@ -82,4 +103,18 @@ async function ameliorerFertiliterChamp(){
 function actionImpossible(bouton){
     bouton.style.animation = "actionImpossible 1s linear";
     setTimeout(function(){ bouton.style.animation = "none";} , 1000);
+}
+function actionEffectuer(bouton){
+    bouton.style.animation = "actionEffectuer 1s linear";
+    setTimeout(function() {bouton.style.animation = "none";},1000);
+}
+function replaceBouton(boutonSpan){
+    boutonSpan.remove()
+  
+}
+function changeColorGreen(bouton){
+    bouton.style.backgroundColor = "#84ff86";
+}
+function changeColorRed(bouton){
+    bouton.style.backgroundColor = "#ff6767";
 }

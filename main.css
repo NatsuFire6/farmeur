@@ -17,8 +17,20 @@ header {
     background-color: #ffebcd; /* Couleur de fond cartoon */
     border-bottom: 2px solid #8b4513; /* Bordure cartoon */
 }
+h1{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sup-main{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
-main {
+main, .main2{
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -225,6 +237,14 @@ footer {
     }
     25%,75%{
         background-color: #ff5031;
+    }
+}
+@keyframes actionEffectuer {
+    0%,50%,100%{
+        background-color: #fffacd;
+    }
+    25%,75%{
+        background-color: #31fcff;
     }
 }
 

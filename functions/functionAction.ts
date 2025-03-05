@@ -14,6 +14,27 @@ export function functionFarmer(){
     
 }
 
+export function functionAutoFarmer(){
+    if(joueurs.champ.autoRecolte){
+        if(joueurs.outil.tailleDeLaRecolte <= joueurs.sacAdos.tailles.stockage - joueurs.sacAdos.remplissement){
+            return functionFarmer()
+        }
+    }
+}
+
+export function functionAcheterEtActiverDesactiverAutoFarmer(){
+    if(joueurs.monaie >= 100000 && !joueurs.champ.autoRecolteAcheter){
+        joueurs.monaie -= 100000
+        joueurs.champ.autoRecolteAcheter = true
+        joueurs.champ.autoRecolte = true
+    }if(joueurs.champ.autoRecolteAcheter){
+        !joueurs.champ.autoRecolte
+    }else{
+        return impossibleAction()
+    }
+    return getValues()
+}
+
 export function functionReplanter(){
     if(joueurs.monaie >= joueurs.champ.parcellesVide && joueurs.champ.parcellesVide > 0){
        joueurs.monaie -= joueurs.champ.parcellesVide

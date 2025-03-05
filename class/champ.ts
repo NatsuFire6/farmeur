@@ -15,6 +15,8 @@ export class Champ{
     public niveauAmeliorationFertiliter = 1
     public prixAmeliorationTaille = 10
     public prixAmeliorationFertiliter = 10
+    public autoRecolte = false
+    public autoRecolteAcheter = false
 
     constructor(){};
 

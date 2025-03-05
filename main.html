@@ -5,8 +5,6 @@
     <title>Farmeur simulator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script src="webui.js" defer></script>
-    <script src="main.js" defer></script>
     <link rel="icon" type="image/png" href="./images/icon_du_jeu.png">
 </head>
 <body>
@@ -45,15 +43,22 @@
             </div>
         </div>
     </header>
-    <main>
         <h1>Farmeur simulator</h1>
         <button class="harvest-button">
-            <img src="./images/icon_du_jeu.png" alt="Récolter" class="button-icon">
+            <img src="./images/icon_du_jeu.png" alt="Prestige" class="button-icon">
         </button>
-        <button class="action-button" id="boutonFarmer" onclick="farmer()">Farmer</button>
-        <button class="action-button" id="boutonVendre" onclick="vendre()">Vendre</button>
-        <button class="action-button" id="boutonReplanter" onclick="replanter()">Replanter</button>
-    </main>
+        <div class="sup-main">
+            <main>
+                <button class="action-button" id="boutonFarmer" onclick="farmer()">Farmer</button>
+                <button class="action-button" id="boutonVendre" onclick="vendre()">Vendre</button>
+                <button class="action-button" id="boutonReplanter" onclick="replanter()">Replanter</button>
+            </main>
+            <div class="main2">
+                <button class="action-button" id="boutonBuyAutoFarmer" onclick="buyAutoFarmer()">Auto farmer <br><span>100 000€</span></button>
+                <button class="action-button" id="boutonBuyAutoVendre" onclick="buyAutoVendre()">Auto vendre <br><span>50 000€</span></button>
+                <button class="action-button" id="boutonBuyAutoReplanter" onclick="buyAutoReplanter()">Auto replanter <br><span>10 000€</span></button>
+            </div>
+        </div>
     <footer>
         <div class="improve-section">
             <h2>Améliorations</h2>
@@ -79,11 +84,13 @@
                     <p>Augmente la surface cultivable du champ.</p>
                     <p>Taille actuelle : <span id="champTaille">4/4</span> parcelles</p>
                     <button class="improve-button" id="boutonAmeliorerFertiliterChamp" onclick="ameliorerFertiliterChamp()">Fertilité du champ : <span id="prixAmeliorerFertiliterChamp">10</span>€</button>
-                    <p>Améliore l'abondances des récoltes de 1. <br>Double le pris à <span id="bonusFertiliter">1/4</span></p>
+                    <p>Améliore l'abondances des récoltes de 1. <br>Double le pris à : <span id="bonusFertiliter">1/4</span></p>
                     <p>Fertilité actuelle : <span id="champFertiliter">1</span></p>
                 </div>
             </div>
         </div>
     </footer>
+    <script src="webui.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
