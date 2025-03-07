@@ -1,4 +1,4 @@
-arg2 = setInterval(updateUI, 500, JSON.parse(getValues()));
+//arg2 = setInterval(updateUI, 500, JSON.parse(getValues()));
 
 function updateUI(elementsToUpdate) {
     elementsToUpdate.forEach(element => {
@@ -23,19 +23,23 @@ async function buyAutoFarmer(){
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoFarmer());
     const autoFarmerAcheter = values.find((element) => element.id === "autoFarmerAcheter");
     const autoFarmerActiver = values.find((element) => element.id === "autoFarmerActiver");
-    let arg
+    //let arg
     if(values != false && autoFarmerAcheter.value){
-        replaceBouton(document.querySelector('#boutonBuyAutoFarmer span'));
+        if(document.querySelector('#boutonBuyAutoFarmer span') != null){
+            removeBalise(document.querySelector('#boutonBuyAutoFarmer span'));
+        }
         if(autoFarmerActiver.value){
             changeColorGreen(document.getElementById('boutonBuyAutoFarmer'))
-            arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
-        }else{
-            clearInterval(arg)
+            //arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
+        }
+        if(!autoFarmerActiver){
+            //clearInterval(arg)
             changeColorRed(document.getElementById('boutonBuyAutoFarmer'))
         }
     }else{
         actionImpossible(document.getElementById('boutonBuyAutoFarmer'));
     }
+    updateUI(values);
 }
 
 async function vendre(){
@@ -108,8 +112,8 @@ function actionEffectuer(bouton){
     bouton.style.animation = "actionEffectuer 1s linear";
     setTimeout(function() {bouton.style.animation = "none";},1000);
 }
-function replaceBouton(boutonSpan){
-    boutonSpan.remove()
+function removeBalise(boutonSpan){
+    boutonSpan.remove();
   
 }
 function changeColorGreen(bouton){

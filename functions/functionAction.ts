@@ -27,12 +27,14 @@ export function functionAcheterEtActiverDesactiverAutoFarmer(){
         joueurs.monaie -= 100000
         joueurs.champ.autoRecolteAcheter = true
         joueurs.champ.autoRecolte = true
-    }if(joueurs.champ.autoRecolteAcheter){
+        return getValues()
+    }else if(joueurs.champ.autoRecolteAcheter){
         !joueurs.champ.autoRecolte
+        return getValues()
     }else{
         return impossibleAction()
     }
-    return getValues()
+    
 }
 
 export function functionReplanter(){
