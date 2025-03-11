@@ -10,18 +10,21 @@ const autoReplanterWorker = new Worker('workers/workerReplanter.js');
 
 // Gestionnaire pour autoFarmer
 autoFarmerWorker.onmessage = function(e) {
+    console.log("Message reçu de autoFarmerWorker out :", e.data);
     if (e.data === 'execute') {
         functionAutoFarmer();
     }
 };
 
 autoVendreWorker.onmessage = function(e){
+    console.log("Message reçu de autoVendreWorker out :", e.data);
     if (e.data === 'execute') {
         functionAutoVendre();
     }
 }
 
 autoReplanterWorker.onmessage = function (e) {
+    console.log("Message reçu de autoReplanterWorker out :", e.data);
     if (e.data === 'execute') {
         functionAutoReplanter();
     }

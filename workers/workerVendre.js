@@ -1,4 +1,5 @@
 self.onmessage = function (e) {
+    console.log("Message reçu de autoVendreWorker in :", e.data);
     if (e.data === 'start') {
         if (!self.intervalId) {
             self.intervalId = setInterval(() => {

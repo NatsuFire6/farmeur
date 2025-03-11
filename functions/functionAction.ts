@@ -58,7 +58,7 @@ export function functionReplanter(){
 
 export function functionAutoReplanter(){
     if(joueurs.champ.autoReplanter && joueurs.champ.parcellesVide > 0){
-        return functionFarmer()
+        return functionReplanter()
     }
     return getValues()
 }
@@ -91,7 +91,7 @@ export function functionVendre(){
 
 export function functionAutoVendre(){
     if(joueurs.champ.autoVendre && joueurs.sacAdos.remplissement > 0){
-        return functionFarmer()
+        return functionVendre()
     }
     return getValues()
 }
