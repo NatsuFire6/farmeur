@@ -4,7 +4,7 @@ self.onmessage = function (e) {
         if (!self.intervalId) {
             self.intervalId = setInterval(() => {
                 self.postMessage('execute');
-            }, 1000);
+            }, 2000);
         }
     } else if (e.data === 'stop') {
         clearInterval(self.intervalId);
