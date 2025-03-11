@@ -1,175 +1,234 @@
-//arg2 = setInterval(updateUI, 500, JSON.parse(getValues()));
+let arg2 = setInterval(async () => {
+    const values = JSON.parse(await getValues());
+    updateUI(values);
+}, 500);
+
+// Initialisation des Web Workers
+const autoFarmerWorker = new Worker('workers/workerFarmer.js');
+const autoVendreWorker = new Worker('workers/workerVendre.js');
+const autoReplanterWorker = new Worker('workers/workerReplanter.js');
+
+// Gestionnaire pour autoFarmer
+autoFarmerWorker.onmessage = function(e) {
+    if (e.data === 'execute') {
+        functionAutoFarmer();
+    }
+};
+
+autoVendreWorker.onmessage = function(e){
+    if (e.data === 'execute') {
+        functionAutoVendre();
+    }
+}
+
+autoReplanterWorker.onmessage = function (e) {
+    if (e.data === 'execute') {
+        functionAutoReplanter();
+    }
+};
+
 
 function updateUI(elementsToUpdate) {
+    if (!Array.isArray(elementsToUpdate)) return;
+    
     elementsToUpdate.forEach(element => {
         const domElement = document.getElementById(element.id);
         if (domElement) {
             domElement.textContent = element.value;
         }
-    })
+    });
+
     console.log(elementsToUpdate);
 }
 
-async function farmer(){
+async function farmer() {
     const values = JSON.parse(await functionFarmer());
-    if(values != false){
+    if (values) {
         updateUI(values);
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonFarmer'));
     }
 }
 
-async function buyAutoFarmer(){
+async function buyAutoFarmer() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoFarmer());
-    const autoFarmerAcheter = values.find((element) => element.id === "autoFarmerAcheter");
-    const autoFarmerActiver = values.find((element) => element.id === "autoFarmerActiver");
-    //let arg
-    if(values != false && autoFarmerAcheter.value){
-        if(document.querySelector('#boutonBuyAutoFarmer span') != null){
+    if (!values) {
+        actionImpossible(document.getElementById('boutonBuyAutoFarmer'));
+        return;
+    }
+
+    const autoFarmerAcheter = values.find(el => el.id === "autoFarmerAcheter");
+    const autoFarmerActiver = values.find(el => el.id === "autoFarmerActiver");
+
+    if (autoFarmerAcheter?.value) {
+        const bouton = document.getElementById('boutonBuyAutoFarmer');
+
+        if (document.querySelector('#boutonBuyAutoFarmer span')) {
             removeBalise(document.querySelector('#boutonBuyAutoFarmer span'));
         }
-        if(autoFarmerActiver.value){
-            changeColorGreen(document.getElementById('boutonBuyAutoFarmer'))
-            //arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
+
+        if (autoFarmerActiver?.value) {
+            changeColorGreen(bouton);
+            autoFarmerWorker.postMessage('start')
+        } else {
+            autoFarmerWorker.postMessage('stop')
+            changeColorRed(bouton);
         }
-        if(!autoFarmerActiver){
-            //clearInterval(arg)
-            changeColorRed(document.getElementById('boutonBuyAutoFarmer'))
-        }
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonBuyAutoFarmer'));
     }
+
     updateUI(values);
 }
 
-async function vendre(){
+async function vendre() {
     const values = JSON.parse(await functionVendre());
-    if(values != false){
+    if (values) {
         updateUI(values);
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonVendre'));
     }
 }
 
-async function buyAutoVendre(){
+async function buyAutoVendre() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoVendre());
-    const autoVendreAcheter = values.find((element) => element.id === "autoVendreAcheter");
-    const autoVendreActiver = values.find((element) => element.id === "autoVendreActiver");
-    //let arg
-    if(values != false && autoVendreAcheter.value){
-        if(document.querySelector('#boutonBuyAutoVendre span') != null){
+    if (!values) {
+        actionImpossible(document.getElementById('boutonBuyAutoVendre'));
+        return;
+    }
+
+    const autoVendreAcheter = values.find(el => el.id === "autoVendreAcheter");
+    const autoVendreActiver = values.find(el => el.id === "autoVendreActiver");
+
+    if (autoVendreAcheter?.value) {
+        const bouton = document.getElementById('boutonBuyAutoVendre');
+
+        if (document.querySelector('#boutonBuyAutoVendre span')) {
             removeBalise(document.querySelector('#boutonBuyAutoVendre span'));
         }
-        if(autoVendreActiver.value){
-            changeColorGreen(document.getElementById('boutonBuyAutoVendre'))
-            //arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
+
+        if (autoVendreActiver?.value) {
+            changeColorGreen(bouton);
+            autoVendreWorker.postMessage('start')
+        } else {
+            autoVendreWorker.postMessage('stop')
+            changeColorRed(bouton);
         }
-        if(!autoVendreActiver){
-            //clearInterval(arg)
-            changeColorRed(document.getElementById('boutonBuyAutoVendre'))
-        }
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonBuyAutoVendre'));
     }
+
     updateUI(values);
 }
 
-async function replanter(){
+async function replanter() {
     const values = JSON.parse(await functionReplanter());
-    if(values != false){
+    if (values) {
         updateUI(values);
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonReplanter'));
     }
 }
 
-async function buyAutoReplanter(){
+async function buyAutoReplanter() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoReplanter());
-    const autoReplanterAcheter = values.find((element) => element.id === "autoReplanterAcheter");
-    const autoReplanterActiver = values.find((element) => element.id === "autoReplanterActiver");
-    //let arg
-    if(values != false && autoReplanterAcheter.value){
-        if(document.querySelector('#boutonBuyAutoReplanter span') != null){
+    if (!values) {
+        actionImpossible(document.getElementById('boutonBuyAutoReplanter'));
+        return;
+    }
+
+    const autoReplanterAcheter = values.find(el => el.id === "autoReplanterAcheter");
+    const autoReplanterActiver = values.find(el => el.id === "autoReplanterActiver");
+
+    if (autoReplanterAcheter?.value) {
+        const bouton = document.getElementById('boutonBuyAutoReplanter');
+
+        if (document.querySelector('#boutonBuyAutoReplanter span')) {
             removeBalise(document.querySelector('#boutonBuyAutoReplanter span'));
         }
-        if(autoReplanterActiver.value){
-            changeColorGreen(document.getElementById('boutonBuyAutoReplanter'))
-            //arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
+
+        if (autoReplanterActiver?.value) {
+            changeColorGreen(bouton);
+            autoReplanterWorker.postMessage('start');
+        } else {
+            autoReplanterWorker.postMessage('stop');
+            changeColorRed(bouton);
         }
-        if(!autoReplanterActiver){
-            //clearInterval(arg)
-            changeColorRed(document.getElementById('boutonBuyAutoReplanter'))
-        }
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonBuyAutoReplanter'));
     }
+
     updateUI(values);
 }
 
-async function ameliorerTailleOutil(){
+async function ameliorerTailleOutil() {
     const values = JSON.parse(await functionAmeliorerTailleOutil());
-    if(values != false){
+    if (values) {
         updateUI(values);
         actionEffectuer(document.getElementById('boutonAmeliorerTailleOutil'));
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonAmeliorerTailleOutil'));
     }
 }
 
-async function ameliorerMateriauxOutil(){
+async function ameliorerMateriauxOutil() {
     const values = JSON.parse(await functionAmeliorerMateriauxOutil());
-    if(values != false){
+    if (values) {
         updateUI(values);
         actionEffectuer(document.getElementById('boutonAmeliorerMateriauxOutil'));
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonAmeliorerMateriauxOutil'));
     }
 }
 
-async function ameliorerSacAdos(){
+async function ameliorerSacAdos() {
     const values = JSON.parse(await functionAmeliorerSacAdos());
-    if(values != false){
+    if (values) {
         updateUI(values);
         actionEffectuer(document.getElementById('boutonAmeliorerSacAdos'));
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonAmeliorerSacAdos'));
     }
 }
 
-async function ameliorerTailleChamp(){
+async function ameliorerTailleChamp() {
     const values = JSON.parse(await functionAmeliorerTailleChamp());
-    if(values != false){
+    if (values) {
         updateUI(values);
         actionEffectuer(document.getElementById('boutonAmeliorerTailleChamp'));
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonAmeliorerTailleChamp'));
     }
 }
 
-async function ameliorerFertiliterChamp(){
+async function ameliorerFertiliterChamp() {
     const values = JSON.parse(await functionAmeliorerFertiliterChamp());
-    if(values != false){
+    if (values) {
         updateUI(values);
         actionEffectuer(document.getElementById('boutonAmeliorerFertiliterChamp'));
-    }else{
+    } else {
         actionImpossible(document.getElementById('boutonAmeliorerFertiliterChamp'));
     }
 }
 
-function actionImpossible(bouton){
+function actionImpossible(bouton) {
     bouton.style.animation = "actionImpossible 1s linear";
-    setTimeout(function(){ bouton.style.animation = "none";} , 1000);
+    setTimeout(() => { bouton.style.animation = "none"; }, 1000);
 }
-function actionEffectuer(bouton){
+
+function actionEffectuer(bouton) {
     bouton.style.animation = "actionEffectuer 1s linear";
-    setTimeout(function() {bouton.style.animation = "none";},1000);
+    setTimeout(() => { bouton.style.animation = "none"; }, 1000);
 }
-function removeBalise(boutonSpan){
+
+function removeBalise(boutonSpan) {
     boutonSpan.remove();
 }
-function changeColorGreen(bouton){
+
+function changeColorGreen(bouton) {
     bouton.style.backgroundColor = "#84ff86";
 }
-function changeColorRed(bouton){
+
+function changeColorRed(bouton) {
     bouton.style.backgroundColor = "#ff6767";
 }

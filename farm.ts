@@ -3,7 +3,7 @@ import { Joueur } from "./class/joueur.ts";
 import { functionAmeliorerSacAdos } from "./functions/functionAmeliorerSacAdos.ts";
 import { functionAmeliorerFertiliterChamp, functionAmeliorerTailleChamp } from "./functions/functionAmeliorerChamp.ts";
 import { functionAmeliorerMateriauxOutil, functionAmeliorerTailleOutil } from "./functions/functionAmeliorerOutil.ts";
-import { functionReplanter,functionFarmer,functionVendre, functionAutoFarmer, functionAcheterEtActiverDesactiverAutoFarmer } from "./functions/functionAction.ts";
+import { functionReplanter,functionFarmer,functionVendre, functionAutoFarmer, functionAcheterEtActiverDesactiverAutoFarmer, functionAcheterEtActiverDesactiverAutoReplanter, functionAcheterEtActiverDesactiverAutoVendre, functionAutoReplanter, functionAutoVendre } from "./functions/functionAction.ts";
 
 import { WebUI } from "https://deno.land/x/webui@2.5.3/mod.ts";
 async function functionHTML(): Promise<void> {
@@ -13,10 +13,14 @@ async function functionHTML(): Promise<void> {
         console.log("HTML content loaded successfully.");
         myWindow.bind("getValues", getValues);
         myWindow.bind("functionFarmer", functionFarmer);
-        myWindow.bind("functionAutoFarmer",functionAutoFarmer)
-        myWindow.bind("functionAcheterEtActiverDesactiverAutoFarmer",functionAcheterEtActiverDesactiverAutoFarmer)
-        myWindow.bind("functionVendre", functionVendre);
         myWindow.bind("functionReplanter", functionReplanter);
+        myWindow.bind("functionVendre", functionVendre);
+        myWindow.bind("functionAutoFarmer",functionAutoFarmer);
+        myWindow.bind("functionAutoReplanter",functionAutoReplanter);
+        myWindow.bind("functionAutoVendre",functionAutoVendre);
+        myWindow.bind("functionAcheterEtActiverDesactiverAutoFarmer",functionAcheterEtActiverDesactiverAutoFarmer);
+        myWindow.bind("functionAcheterEtActiverDesactiverAutoReplanter",functionAcheterEtActiverDesactiverAutoReplanter);
+        myWindow.bind("functionAcheterEtActiverDesactiverAutoVendre",functionAcheterEtActiverDesactiverAutoVendre);
         myWindow.bind("functionAmeliorerTailleOutil", functionAmeliorerTailleOutil);
         myWindow.bind("functionAmeliorerMateriauxOutil", functionAmeliorerMateriauxOutil);
         myWindow.bind("functionAmeliorerSacAdos", functionAmeliorerSacAdos);
@@ -61,7 +65,7 @@ export function getValues() {
         { id: "autoVendreAcheter", value: joueurs.champ.autoVendreAcheter},
         { id: "autoVendreActiver", value: joueurs.champ.autoVendre},
         { id: "autoReplanterAcheter", value: joueurs.champ.autoReplanterAcheter},
-        { id: "autoReplanterActiver", value: joueurs.champ.autoReplanter},
+        { id: "autoReplanterActiver", value: joueurs.champ.autoReplanter}
     ]);
 }
 

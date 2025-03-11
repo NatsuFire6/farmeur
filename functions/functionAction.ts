@@ -20,6 +20,7 @@ export function functionAutoFarmer(){
             return functionFarmer()
         }
     }
+    return getValues()
 }
 
 export function functionAcheterEtActiverDesactiverAutoFarmer(){
@@ -29,7 +30,7 @@ export function functionAcheterEtActiverDesactiverAutoFarmer(){
         joueurs.champ.autoRecolte = true
         return getValues()
     }else if(joueurs.champ.autoRecolteAcheter){
-        !joueurs.champ.autoRecolte
+        joueurs.champ.autoRecolte = !joueurs.champ.autoRecolte
         return getValues()
     }else{
         return impossibleAction()
@@ -54,6 +55,14 @@ export function functionReplanter(){
         return impossibleAction()
     }  
 }
+
+export function functionAutoReplanter(){
+    if(joueurs.champ.autoReplanter && joueurs.champ.parcellesVide > 0){
+        return functionFarmer()
+    }
+    return getValues()
+}
+
 export function functionAcheterEtActiverDesactiverAutoReplanter(){
     if(joueurs.monaie >= 10000 && !joueurs.champ.autoReplanterAcheter){
         joueurs.monaie -= 10000
@@ -61,7 +70,7 @@ export function functionAcheterEtActiverDesactiverAutoReplanter(){
         joueurs.champ.autoReplanter = true
         return getValues()
     }else if(joueurs.champ.autoReplanterAcheter){
-        !joueurs.champ.autoReplanter
+        joueurs.champ.autoReplanter = !joueurs.champ.autoReplanter
         return getValues()
     }else{
         return impossibleAction()
@@ -79,6 +88,14 @@ export function functionVendre(){
     }
     
 }
+
+export function functionAutoVendre(){
+    if(joueurs.champ.autoVendre && joueurs.sacAdos.remplissement > 0){
+        return functionFarmer()
+    }
+    return getValues()
+}
+
 export function functionAcheterEtActiverDesactiverAutoVendre(){
     if(joueurs.monaie >= 50000 && !joueurs.champ.autoVendreAcheter){
         joueurs.monaie -= 50000
@@ -86,7 +103,7 @@ export function functionAcheterEtActiverDesactiverAutoVendre(){
         joueurs.champ.autoVendre = true
         return getValues()
     }else if(joueurs.champ.autoVendreAcheter){
-        !joueurs.champ.autoVendre
+        joueurs.champ.autoVendre = !joueurs.champ.autoVendre
         return getValues()
     }else{
         return impossibleAction()
