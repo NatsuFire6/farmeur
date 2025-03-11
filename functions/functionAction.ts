@@ -54,11 +54,39 @@ export function functionReplanter(){
         return impossibleAction()
     }  
 }
+export function functionAcheterEtActiverDesactiverAutoReplanter(){
+    if(joueurs.monaie >= 10000 && !joueurs.champ.autoReplanterAcheter){
+        joueurs.monaie -= 10000
+        joueurs.champ.autoReplanterAcheter = true
+        joueurs.champ.autoReplanter = true
+        return getValues()
+    }else if(joueurs.champ.autoReplanterAcheter){
+        !joueurs.champ.autoReplanter
+        return getValues()
+    }else{
+        return impossibleAction()
+    }
+    
+}
 
 export function functionVendre(){
     if(joueurs.sacAdos.remplissement > 0){
         const ventes = joueurs.sacAdos.vider()
         joueurs.monaie += (ventes*joueurs.champ.prixDuBle)
+        return getValues()
+    }else{
+        return impossibleAction()
+    }
+    
+}
+export function functionAcheterEtActiverDesactiverAutoVendre(){
+    if(joueurs.monaie >= 50000 && !joueurs.champ.autoVendreAcheter){
+        joueurs.monaie -= 50000
+        joueurs.champ.autoVendreAcheter = true
+        joueurs.champ.autoVendre = true
+        return getValues()
+    }else if(joueurs.champ.autoVendreAcheter){
+        !joueurs.champ.autoVendre
         return getValues()
     }else{
         return impossibleAction()

@@ -11,12 +11,18 @@ export class Champ{
     public nextLevelBle = 0
     public prixDuBle = 2
     public fertiliter = 1
+
     public niveauAmeliorationTaille = 1
     public niveauAmeliorationFertiliter = 1
     public prixAmeliorationTaille = 10
     public prixAmeliorationFertiliter = 10
+
     public autoRecolte = false
     public autoRecolteAcheter = false
+    public autoReplanter = false
+    public autoReplanterAcheter = false
+    public autoVendre = false
+    public autoVendreAcheter = false
 
     constructor(){};
 

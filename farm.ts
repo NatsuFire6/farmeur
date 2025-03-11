@@ -57,7 +57,11 @@ export function getValues() {
         { id: "prixAmeliorerTailleChamp", value: joueurs.champ.prixAmeliorationTaille.toString() },
         { id: "prixAmeliorerFertiliterChamp", value: joueurs.champ.prixAmeliorationFertiliter.toString() },
         { id: "autoFarmerAcheter", value: joueurs.champ.autoRecolteAcheter},
-        { id: "autoFarmerActiver", value: joueurs.champ.autoRecolte}
+        { id: "autoFarmerActiver", value: joueurs.champ.autoRecolte},
+        { id: "autoVendreAcheter", value: joueurs.champ.autoVendreAcheter},
+        { id: "autoVendreActiver", value: joueurs.champ.autoVendre},
+        { id: "autoReplanterAcheter", value: joueurs.champ.autoReplanterAcheter},
+        { id: "autoReplanterActiver", value: joueurs.champ.autoReplanter},
     ]);
 }
 

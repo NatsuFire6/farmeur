@@ -50,6 +50,30 @@ async function vendre(){
         actionImpossible(document.getElementById('boutonVendre'));
     }
 }
+
+async function buyAutoVendre(){
+    const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoVendre());
+    const autoVendreAcheter = values.find((element) => element.id === "autoVendreAcheter");
+    const autoVendreActiver = values.find((element) => element.id === "autoVendreActiver");
+    //let arg
+    if(values != false && autoVendreAcheter.value){
+        if(document.querySelector('#boutonBuyAutoVendre span') != null){
+            removeBalise(document.querySelector('#boutonBuyAutoVendre span'));
+        }
+        if(autoVendreActiver.value){
+            changeColorGreen(document.getElementById('boutonBuyAutoVendre'))
+            //arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
+        }
+        if(!autoVendreActiver){
+            //clearInterval(arg)
+            changeColorRed(document.getElementById('boutonBuyAutoVendre'))
+        }
+    }else{
+        actionImpossible(document.getElementById('boutonBuyAutoVendre'));
+    }
+    updateUI(values);
+}
+
 async function replanter(){
     const values = JSON.parse(await functionReplanter());
     if(values != false){
@@ -58,6 +82,30 @@ async function replanter(){
         actionImpossible(document.getElementById('boutonReplanter'));
     }
 }
+
+async function buyAutoReplanter(){
+    const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoReplanter());
+    const autoReplanterAcheter = values.find((element) => element.id === "autoReplanterAcheter");
+    const autoReplanterActiver = values.find((element) => element.id === "autoReplanterActiver");
+    //let arg
+    if(values != false && autoReplanterAcheter.value){
+        if(document.querySelector('#boutonBuyAutoReplanter span') != null){
+            removeBalise(document.querySelector('#boutonBuyAutoReplanter span'));
+        }
+        if(autoReplanterActiver.value){
+            changeColorGreen(document.getElementById('boutonBuyAutoReplanter'))
+            //arg = setInterval(updateUI, 1000, JSON.parse(await functionAutoFarmer()));
+        }
+        if(!autoReplanterActiver){
+            //clearInterval(arg)
+            changeColorRed(document.getElementById('boutonBuyAutoReplanter'))
+        }
+    }else{
+        actionImpossible(document.getElementById('boutonBuyAutoReplanter'));
+    }
+    updateUI(values);
+}
+
 async function ameliorerTailleOutil(){
     const values = JSON.parse(await functionAmeliorerTailleOutil());
     if(values != false){
@@ -67,6 +115,7 @@ async function ameliorerTailleOutil(){
         actionImpossible(document.getElementById('boutonAmeliorerTailleOutil'));
     }
 }
+
 async function ameliorerMateriauxOutil(){
     const values = JSON.parse(await functionAmeliorerMateriauxOutil());
     if(values != false){
@@ -76,6 +125,7 @@ async function ameliorerMateriauxOutil(){
         actionImpossible(document.getElementById('boutonAmeliorerMateriauxOutil'));
     }
 }
+
 async function ameliorerSacAdos(){
     const values = JSON.parse(await functionAmeliorerSacAdos());
     if(values != false){
@@ -85,6 +135,7 @@ async function ameliorerSacAdos(){
         actionImpossible(document.getElementById('boutonAmeliorerSacAdos'));
     }
 }
+
 async function ameliorerTailleChamp(){
     const values = JSON.parse(await functionAmeliorerTailleChamp());
     if(values != false){
@@ -94,6 +145,7 @@ async function ameliorerTailleChamp(){
         actionImpossible(document.getElementById('boutonAmeliorerTailleChamp'));
     }
 }
+
 async function ameliorerFertiliterChamp(){
     const values = JSON.parse(await functionAmeliorerFertiliterChamp());
     if(values != false){
@@ -114,7 +166,6 @@ function actionEffectuer(bouton){
 }
 function removeBalise(boutonSpan){
     boutonSpan.remove();
-  
 }
 function changeColorGreen(bouton){
     bouton.style.backgroundColor = "#84ff86";
