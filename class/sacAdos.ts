@@ -10,8 +10,6 @@ export class SacAdos{
     public prixAmelioration = 10
     public niveau = 1
 
-    constructor(){}
-
     ajouter(deCbm :number){
         if(this.remplissement + deCbm <= this.tailles.stockage){
             this.remplissement += deCbm

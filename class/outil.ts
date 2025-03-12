@@ -10,8 +10,6 @@ export class Outil {
     public futurOutil = ["Fauscille", "tracteur", "laser", "robot"]
     public futurMateriaux = ["Bois", "Pierre", "Fer", "Diamant"]
 
-    constructor(){}
-
     augmenterLaTailleDeLaRecolte(){
         this.tailleDeLaRecolte++
         this.prixAmeliorationTaille *= 2

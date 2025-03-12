@@ -66,7 +66,9 @@ export function getValues() {
         { id: "autoVendreActiver", value: joueurs.champ.autoVendre},
         { id: "autoReplanterAcheter", value: joueurs.champ.autoReplanterAcheter},
         { id: "autoReplanterActiver", value: joueurs.champ.autoReplanter},
-        { id: "prixble", value: joueurs.champ.prixDuBle}
+        { id: "prixble", value: joueurs.champ.prixDuBle},
+        { id: "fertiliterMax", value: joueurs.champ.fertiliterTierMaxBool},
+        { id: "tailleMax", value: joueurs.champ.tailleTierMaxBool},
     ]);
 }
 

@@ -136,8 +136,7 @@ async function replanter() {
 async function buyAutoReplanter() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoReplanter());
     if (!values) {
-        actionImpossible(document.getElementById('boutonBuyAutoReplanter'));
-        return;
+        return actionImpossible(document.getElementById('boutonBuyAutoReplanter'));
     }
 
     const autoReplanterAcheter = values.find(el => el.id === "autoReplanterAcheter");
@@ -196,9 +195,15 @@ async function ameliorerSacAdos() {
 
 async function ameliorerTailleChamp() {
     const values = JSON.parse(await functionAmeliorerTailleChamp());
+    
     if (values) {
-        updateUI(values);
-        actionEffectuer(document.getElementById('boutonAmeliorerTailleChamp'));
+        const tailleMax = values.find(el => el.id === "tailleMax");
+        if (!tailleMax) {
+            removeMax(document.getElementById('boutonAmeliorerTailleChamp'))
+        }else{
+            updateUI(values);
+            actionEffectuer(document.getElementById('boutonAmeliorerTailleChamp'));
+        }
     } else {
         actionImpossible(document.getElementById('boutonAmeliorerTailleChamp'));
     }
@@ -206,9 +211,15 @@ async function ameliorerTailleChamp() {
 
 async function ameliorerFertiliterChamp() {
     const values = JSON.parse(await functionAmeliorerFertiliterChamp());
+    
     if (values) {
-        updateUI(values);
-        actionEffectuer(document.getElementById('boutonAmeliorerFertiliterChamp'));
+        const fertiliterMax = values.find(el => el.id === "fertiliterMax");
+        if(!fertiliterMax){
+            removeMax(document.getElementById('boutonAmeliorerFertiliterChamp'))
+        }else{
+            updateUI(values);
+            actionEffectuer(document.getElementById('boutonAmeliorerFertiliterChamp'));
+        }
     } else {
         actionImpossible(document.getElementById('boutonAmeliorerFertiliterChamp'));
     }
@@ -227,6 +238,27 @@ function actionEffectuer(bouton) {
 function removeBalise(boutonSpan) {
     boutonSpan.remove();
 }
+
+function removeMax(bouton) {
+    // Extraire le premier mot avant ":"
+    const textBeforeColon = bouton.textContent.split(':')[0].trim();
+
+    // Supprimer l'ancien bouton
+    bouton.remove();
+
+    // Créer un nouvel élément bouton
+    const newButton = document.createElement('button');
+    newButton.className = 'improve-button';
+    newButton.id = bouton.id; // Conserver le même ID
+    newButton.textContent = `${textBeforeColon} : Max`;
+
+    // Ajouter le nouveau bouton au DOM
+    const parentDiv = bouton.closest('.improve-item');
+    if (parentDiv) {
+        parentDiv.appendChild(newButton);
+    }
+}
+
 
 function changeColorGreen(bouton) {
     bouton.style.backgroundColor = "#84ff86";
