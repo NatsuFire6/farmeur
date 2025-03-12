@@ -13,7 +13,7 @@ export function functionAmeliorerTailleChamp(){
 };
 export function functionAmeliorerFertiliterChamp(){
     const prix = joueurs.champ.prixAmeliorationFertiliter
-    if(joueurs.monaie >= prix){
+    if(joueurs.monaie >= prix && joueurs.champ.niveauDuBle < joueurs.champ.futurTypeDeBle.length){
         joueurs.monaie -= prix
         joueurs.champ.augmenterLaFertiliter()
         return getValues()
