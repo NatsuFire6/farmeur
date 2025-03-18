@@ -1,4 +1,5 @@
-setInterval(async () => {
+// deno-lint-ignore-file
+let arg2 = setInterval(async () => {
     const values = JSON.parse(await getValues());
     updateUI(values);
 }, 500);
@@ -46,13 +47,20 @@ function updateUI(elementsToUpdate) {
 
 async function farmer() {
     const values = JSON.parse(await functionFarmer());
-    values ? updateUI(values) : actionImpossible(document.getElementById('boutonFarmer'));
+    if (values) {
+        updateUI(values);
+    } else {
+        actionImpossible(document.getElementById('boutonFarmer'));
+    }
 }
 
 async function buyAutoFarmer() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoFarmer());
     const bouton = document.getElementById('boutonBuyAutoFarmer');
-    values ? updateUI(values) : actionImpossible(bouton);
+    if (!values) {
+        actionImpossible(bouton);
+        return;
+    }
     const autoFarmerAcheter = values.find(el => el.id === "autoFarmerAcheter");
     const autoFarmerActiver = values.find(el => el.id === "autoFarmerActiver");
 
@@ -75,13 +83,20 @@ async function buyAutoFarmer() {
 
 async function vendre() {
     const values = JSON.parse(await functionVendre());
-    values ? updateUI(values) : actionImpossible(document.getElementById('boutonVendre'));
+    if (values) {
+        updateUI(values);
+    } else {
+        actionImpossible(document.getElementById('boutonVendre'));
+    }
 }
 
 async function buyAutoVendre() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoVendre());
     const bouton = document.getElementById('boutonBuyAutoVendre');
-    if (!values) actionImpossible(bouton);
+    if (!values) {
+        actionImpossible(bouton);
+    return;
+    }
     const autoVendreAcheter = values.find(el => el.id === "autoVendreAcheter");
     const autoVendreActiver = values.find(el => el.id === "autoVendreActiver");
 
@@ -104,13 +119,20 @@ async function buyAutoVendre() {
 
 async function replanter() {
     const values = JSON.parse(await functionReplanter());
-    values ? updateUI(values) : actionImpossible(document.getElementById('boutonReplanter'));
+    if (values) {
+        updateUI(values);
+    } else {
+        actionImpossible(document.getElementById('boutonReplanter'));
+    }
 }
 
 async function buyAutoReplanter() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoReplanter());
     const bouton = document.getElementById('boutonBuyAutoReplanter');
-    if (!values) actionImpossible(bouton);
+    if (!values){
+        actionImpossible(bouton);
+    return;
+    }
     const autoReplanterAcheter = values.find(el => el.id === "autoReplanterAcheter");
     const autoReplanterActiver = values.find(el => el.id === "autoReplanterActiver");
 
@@ -134,6 +156,7 @@ async function buyAutoReplanter() {
 async function ameliorerTailleOutil() {
     const values = JSON.parse(await functionAmeliorerTailleOutil());
     const bouton = document.getElementById('boutonAmeliorerTailleOutil');
+
     if (values) {
         updateUI(values);
         actionEffectuer(bouton);
@@ -145,6 +168,7 @@ async function ameliorerTailleOutil() {
 async function ameliorerMateriauxOutil() {
     const values = JSON.parse(await functionAmeliorerMateriauxOutil());
     const bouton = document.getElementById('boutonAmeliorerMateriauxOutil');
+
     if (values) {
         updateUI(values);
         actionEffectuer(bouton);
@@ -153,13 +177,21 @@ async function ameliorerMateriauxOutil() {
     }
 }
 
+let sacMax = 0;
 async function ameliorerSacAdos() {
     const values = JSON.parse(await functionAmeliorerSacAdos());
     const bouton = document.getElementById('boutonAmeliorerSacAdos');
 
     if (values) {
-        updateUI(values);
-        actionEffectuer(bouton);
+        if(sacMax >= 37){
+            bouton.textContent = "Taille du sac à dos : Max";
+            bouton.style.boxShadow = '2px 2px 0 #8b4513, inset 2px 2px 5px 2px #d81717b2, inset -2px -2px 5px 2px #d81717b2';
+            removeBalise(document.getElementById('info-sacAdos'));
+        }else{
+            updateUI(values);
+            actionEffectuer(bouton);
+            sacMax++;
+        }
     } else {
         actionImpossible(bouton);
     }
@@ -170,15 +202,16 @@ async function ameliorerTailleChamp() {
     const values = JSON.parse(await functionAmeliorerTailleChamp());
     const bouton = document.getElementById('boutonAmeliorerTailleChamp')
 
-    if (values && tailleMax >= 27 ) {
+    if (values) {
         if (tailleMax >= 27 ) {
             bouton.textContent = "Taille du Champ : Max";
             bouton.style.boxShadow = '2px 2px 0 #8b4513, inset 2px 2px 5px 2px #d81717b2, inset -2px -2px 5px 2px #d81717b2';
+            removeBalise(document.getElementById('info-champTaille'));
         }else{
+            updateUI(values);
             actionEffectuer(bouton);
             tailleMax++;
         }
-        updateUI(values);
     } else {
         actionImpossible(bouton);
     }
@@ -187,17 +220,18 @@ async function ameliorerTailleChamp() {
 let fertiliterMax = 0;
 async function ameliorerFertiliterChamp() {
     const values = JSON.parse(await functionAmeliorerFertiliterChamp());
-    const bouton = document.getElementById('boutonAmeliorerFertiliterChamp')
+    const bouton = document.getElementById('boutonAmeliorerFertiliterChamp');
 
-    if (values && fertiliterMax >= 36) {
-        if(fertiliterMax >= 36){
+    if (values) {
+        if(fertiliterMax >= 34){
             bouton.textContent = "Fertiliter du Champ : Max";
             bouton.style.boxShadow = '2px 2px 0 #8b4513, inset 2px 2px 5px 2px #d81717b2, inset -2px -2px 5px 2px #d81717b2';
+            removeBalise(document.getElementById('info-champFertiliter'));
         }else{
+            updateUI(values);
             actionEffectuer(bouton);
             fertiliterMax++;
         }
-        updateUI(values);
     } else {
         actionImpossible(bouton);
     }
