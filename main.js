@@ -1,4 +1,4 @@
-let arg2 = setInterval(async () => {
+setInterval(async () => {
     const values = JSON.parse(await getValues());
     updateUI(values);
 }, 500);
@@ -46,30 +46,20 @@ function updateUI(elementsToUpdate) {
 
 async function farmer() {
     const values = JSON.parse(await functionFarmer());
-    if (values) {
-        updateUI(values);
-    } else {
-        actionImpossible(document.getElementById('boutonFarmer'));
-    }
+    values ? updateUI(values) : actionImpossible(document.getElementById('boutonFarmer'));
 }
 
 async function buyAutoFarmer() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoFarmer());
-    if (!values) {
-        actionImpossible(document.getElementById('boutonBuyAutoFarmer'));
-        return;
-    }
-
+    const bouton = document.getElementById('boutonBuyAutoFarmer');
+    values ? updateUI(values) : actionImpossible(bouton);
     const autoFarmerAcheter = values.find(el => el.id === "autoFarmerAcheter");
     const autoFarmerActiver = values.find(el => el.id === "autoFarmerActiver");
 
     if (autoFarmerAcheter?.value) {
-        const bouton = document.getElementById('boutonBuyAutoFarmer');
-
         if (document.querySelector('#boutonBuyAutoFarmer span')) {
             removeBalise(document.querySelector('#boutonBuyAutoFarmer span'));
         }
-
         if (autoFarmerActiver?.value) {
             changeColorGreen(bouton);
             autoFarmerWorker.postMessage('start')
@@ -78,38 +68,27 @@ async function buyAutoFarmer() {
             changeColorRed(bouton);
         }
     } else {
-        actionImpossible(document.getElementById('boutonBuyAutoFarmer'));
+        actionImpossible(bouton);
     }
-
     updateUI(values);
 }
 
 async function vendre() {
     const values = JSON.parse(await functionVendre());
-    if (values) {
-        updateUI(values);
-    } else {
-        actionImpossible(document.getElementById('boutonVendre'));
-    }
+    values ? updateUI(values) : actionImpossible(document.getElementById('boutonVendre'));
 }
 
 async function buyAutoVendre() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoVendre());
-    if (!values) {
-        actionImpossible(document.getElementById('boutonBuyAutoVendre'));
-        return;
-    }
-
+    const bouton = document.getElementById('boutonBuyAutoVendre');
+    if (!values) actionImpossible(bouton);
     const autoVendreAcheter = values.find(el => el.id === "autoVendreAcheter");
     const autoVendreActiver = values.find(el => el.id === "autoVendreActiver");
 
     if (autoVendreAcheter?.value) {
-        const bouton = document.getElementById('boutonBuyAutoVendre');
-
         if (document.querySelector('#boutonBuyAutoVendre span')) {
             removeBalise(document.querySelector('#boutonBuyAutoVendre span'));
         }
-
         if (autoVendreActiver?.value) {
             changeColorGreen(bouton);
             autoVendreWorker.postMessage('start')
@@ -118,37 +97,27 @@ async function buyAutoVendre() {
             changeColorRed(bouton);
         }
     } else {
-        actionImpossible(document.getElementById('boutonBuyAutoVendre'));
+        actionImpossible(bouton);
     }
-
     updateUI(values);
 }
 
 async function replanter() {
     const values = JSON.parse(await functionReplanter());
-    if (values) {
-        updateUI(values);
-    } else {
-        actionImpossible(document.getElementById('boutonReplanter'));
-    }
+    values ? updateUI(values) : actionImpossible(document.getElementById('boutonReplanter'));
 }
 
 async function buyAutoReplanter() {
     const values = JSON.parse(await functionAcheterEtActiverDesactiverAutoReplanter());
-    if (!values) {
-        return actionImpossible(document.getElementById('boutonBuyAutoReplanter'));
-    }
-
+    const bouton = document.getElementById('boutonBuyAutoReplanter');
+    if (!values) actionImpossible(bouton);
     const autoReplanterAcheter = values.find(el => el.id === "autoReplanterAcheter");
     const autoReplanterActiver = values.find(el => el.id === "autoReplanterActiver");
 
     if (autoReplanterAcheter?.value) {
-        const bouton = document.getElementById('boutonBuyAutoReplanter');
-
         if (document.querySelector('#boutonBuyAutoReplanter span')) {
             removeBalise(document.querySelector('#boutonBuyAutoReplanter span'));
         }
-
         if (autoReplanterActiver?.value) {
             changeColorGreen(bouton);
             autoReplanterWorker.postMessage('start');
@@ -157,71 +126,80 @@ async function buyAutoReplanter() {
             changeColorRed(bouton);
         }
     } else {
-        actionImpossible(document.getElementById('boutonBuyAutoReplanter'));
+        actionImpossible(bouton);
     }
-
     updateUI(values);
 }
 
 async function ameliorerTailleOutil() {
     const values = JSON.parse(await functionAmeliorerTailleOutil());
+    const bouton = document.getElementById('boutonAmeliorerTailleOutil');
     if (values) {
         updateUI(values);
-        actionEffectuer(document.getElementById('boutonAmeliorerTailleOutil'));
+        actionEffectuer(bouton);
     } else {
-        actionImpossible(document.getElementById('boutonAmeliorerTailleOutil'));
+        actionImpossible(bouton);
     }
 }
 
 async function ameliorerMateriauxOutil() {
     const values = JSON.parse(await functionAmeliorerMateriauxOutil());
+    const bouton = document.getElementById('boutonAmeliorerMateriauxOutil');
     if (values) {
         updateUI(values);
-        actionEffectuer(document.getElementById('boutonAmeliorerMateriauxOutil'));
+        actionEffectuer(bouton);
     } else {
-        actionImpossible(document.getElementById('boutonAmeliorerMateriauxOutil'));
+        actionImpossible(bouton);
     }
 }
 
 async function ameliorerSacAdos() {
     const values = JSON.parse(await functionAmeliorerSacAdos());
+    const bouton = document.getElementById('boutonAmeliorerSacAdos');
+
     if (values) {
         updateUI(values);
-        actionEffectuer(document.getElementById('boutonAmeliorerSacAdos'));
+        actionEffectuer(bouton);
     } else {
-        actionImpossible(document.getElementById('boutonAmeliorerSacAdos'));
+        actionImpossible(bouton);
     }
 }
 
+let tailleMax = 0;
 async function ameliorerTailleChamp() {
     const values = JSON.parse(await functionAmeliorerTailleChamp());
-    
-    if (values) {
-        const tailleMax = values.find(el => el.id === "tailleMax");
-        if (!tailleMax) {
-            removeMax(document.getElementById('boutonAmeliorerTailleChamp'))
+    const bouton = document.getElementById('boutonAmeliorerTailleChamp')
+
+    if (values && tailleMax >= 27 ) {
+        if (tailleMax >= 27 ) {
+            bouton.textContent = "Taille du Champ : Max";
+            bouton.style.boxShadow = '2px 2px 0 #8b4513, inset 2px 2px 5px 2px #d81717b2, inset -2px -2px 5px 2px #d81717b2';
         }else{
-            updateUI(values);
-            actionEffectuer(document.getElementById('boutonAmeliorerTailleChamp'));
+            actionEffectuer(bouton);
+            tailleMax++;
         }
+        updateUI(values);
     } else {
-        actionImpossible(document.getElementById('boutonAmeliorerTailleChamp'));
+        actionImpossible(bouton);
     }
 }
 
+let fertiliterMax = 0;
 async function ameliorerFertiliterChamp() {
     const values = JSON.parse(await functionAmeliorerFertiliterChamp());
-    
-    if (values) {
-        const fertiliterMax = values.find(el => el.id === "fertiliterMax");
-        if(!fertiliterMax){
-            removeMax(document.getElementById('boutonAmeliorerFertiliterChamp'))
+    const bouton = document.getElementById('boutonAmeliorerFertiliterChamp')
+
+    if (values && fertiliterMax >= 36) {
+        if(fertiliterMax >= 36){
+            bouton.textContent = "Fertiliter du Champ : Max";
+            bouton.style.boxShadow = '2px 2px 0 #8b4513, inset 2px 2px 5px 2px #d81717b2, inset -2px -2px 5px 2px #d81717b2';
         }else{
-            updateUI(values);
-            actionEffectuer(document.getElementById('boutonAmeliorerFertiliterChamp'));
+            actionEffectuer(bouton);
+            fertiliterMax++;
         }
+        updateUI(values);
     } else {
-        actionImpossible(document.getElementById('boutonAmeliorerFertiliterChamp'));
+        actionImpossible(bouton);
     }
 }
 
@@ -238,27 +216,6 @@ function actionEffectuer(bouton) {
 function removeBalise(boutonSpan) {
     boutonSpan.remove();
 }
-
-function removeMax(bouton) {
-    // Extraire le premier mot avant ":"
-    const textBeforeColon = bouton.textContent.split(':')[0].trim();
-
-    // Supprimer l'ancien bouton
-    bouton.remove();
-
-    // Créer un nouvel élément bouton
-    const newButton = document.createElement('button');
-    newButton.className = 'improve-button';
-    newButton.id = bouton.id; // Conserver le même ID
-    newButton.textContent = `${textBeforeColon} : Max`;
-
-    // Ajouter le nouveau bouton au DOM
-    const parentDiv = bouton.closest('.improve-item');
-    if (parentDiv) {
-        parentDiv.appendChild(newButton);
-    }
-}
-
 
 function changeColorGreen(bouton) {
     bouton.style.backgroundColor = "#84ff86";

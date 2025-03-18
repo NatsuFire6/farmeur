@@ -4,7 +4,7 @@ import { SacAdos } from "./sacAdos.ts";
 
 export class Joueur {
     public name = ""
-    public monaie = 2000000
+    public monaie = 2000000000
     public sacAdos :SacAdos = new SacAdos()
     public outil :Outil = new Outil()
     public champ :Champ = new Champ();

@@ -23,9 +23,7 @@ export class Champ {
     public prixDuBle = 2;
     public fertiliter = 1;
     public fertiliterTierMax = 36
-    public fertiliterTierMaxBool = false
-    public tailleTierMax = 200
-    public tailleTierMaxBool = false
+    public tailleTierMax = 256;
 
     public niveauAmeliorationTaille = 0;
     public niveauAmeliorationFertiliter = 0;
@@ -59,18 +57,14 @@ export class Champ {
             this.tailles.longueur++;
         }
         this.tailles.parcellesPleine = this.tailles.longueur * this.tailles.largeur;
-        if(this.tailles.parcellesPleine >= this.tailleTierMax){
-            this.tailleTierMaxBool = true
-        }
     }
 
     augmenterLaFertiliter() {
-        this.niveauAmeliorationFertiliter++;
-        this.fertiliter++;
-        this.prixAmeliorationFertiliter = Math.trunc(this.prixAmeliorationFertiliter*1.8);
-        this.changerLeTypeDeBle();
-        if(this.fertiliter >= this.fertiliterTierMax){
-            this.fertiliterTierMaxBool = true
+        if(this.fertiliterTierMax > this.fertiliter){
+            this.niveauAmeliorationFertiliter++;
+            this.fertiliter++;
+            this.prixAmeliorationFertiliter = Math.trunc(this.prixAmeliorationFertiliter*1.5);
+            this.changerLeTypeDeBle();
         }
     }
 

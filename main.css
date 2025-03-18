@@ -230,6 +230,10 @@ footer {
 .improve-item h3 {
     margin-top: 0;
 }
+/*
+#boutonAmeliorerTailleChamp{
+    box-shadow: 2px 2px 0 #8b4513, inset 2px 2px 5px 2px #d81717b2, inset -2px -2px 5px 2px #d81717b2;
+}*/
 
 @keyframes actionImpossible {
     0%,50%,100%{
