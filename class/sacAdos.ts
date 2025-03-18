@@ -25,7 +25,8 @@ export class SacAdos{
         return vente
     }
     augmenterStockage(){
-        this.prixAmelioration *= 1 + Math.ceil(Math.sqrt(this.niveau))
+        this.prixAmelioration = Math.trunc(this.prixAmelioration*1.65)
+        this.niveau++
         if(this.tailles.largeur <= this.tailles.hauteur && this.tailles.largeur <= this.tailles.longueur){
             this.tailles.largeur++
         }else if(this.tailles.longueur <= this.tailles.hauteur && this.tailles.longueur <= this.tailles.largeur){
