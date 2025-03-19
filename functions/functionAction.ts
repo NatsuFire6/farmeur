@@ -1,3 +1,6 @@
+import { Champ } from "../class/champ.ts";
+import { Outil } from "../class/outil.ts";
+import { SacAdos } from "../class/sacAdos.ts";
 import { getValues, impossibleAction, joueurs } from "../farm.ts";
 
 export function functionFarmer(){
@@ -11,7 +14,6 @@ export function functionFarmer(){
     }else{
         return impossibleAction()
     }
-    
 }
 
 export function functionAutoFarmer(){
@@ -35,7 +37,6 @@ export function functionAcheterEtActiverDesactiverAutoFarmer(){
     }else{
         return impossibleAction()
     }
-    
 }
 
 export function functionReplanter(){
@@ -74,19 +75,17 @@ export function functionAcheterEtActiverDesactiverAutoReplanter(){
         return getValues()
     }else{
         return impossibleAction()
-    }
-    
+    } 
 }
 
 export function functionVendre(){
     if(joueurs.sacAdos.remplissement > 0){
         const ventes = joueurs.sacAdos.vider()
-        joueurs.monaie += (ventes*joueurs.champ.prixDuBle)
+        joueurs.monaie += (ventes*joueurs.champ.prixDuBle*joueurs.multiplicateurDePrestige)
         return getValues()
     }else{
         return impossibleAction()
     }
-    
 }
 
 export function functionAutoVendre(){
@@ -108,5 +107,26 @@ export function functionAcheterEtActiverDesactiverAutoVendre(){
     }else{
         return impossibleAction()
     }
-    
+}
+
+export function prestigePossible(){
+    if(joueurs.monaie >= 100 * (joueurs.niveauPrestige * 10 )) {
+        joueurs.prestigeAchetable = true
+    }
+}
+
+export function prestige(){
+    if(joueurs.prestigeAchetable){
+        joueurs.monaie = 0
+        joueurs.sacAdos = new SacAdos()
+        joueurs.outil = new Outil()
+        joueurs.champ = new Champ()
+        joueurs.xp = 0
+        joueurs.xpPass = 100
+        joueurs.niveau = 0
+        joueurs.niveauPass = 10
+        joueurs.niveauPrestige++
+        joueurs.multiplicateurDePrestige += 5
+        joueurs.prestigeAchetable = false
+    }
 }

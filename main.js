@@ -2,6 +2,9 @@
 let arg2 = setInterval(async () => {
     const values = JSON.parse(await getValues());
     updateUI(values);
+    prestigePossible()
+    const PrestigePossible = values.find(el => el.id === "prestigePossible");
+    PrestigePossible ? document.getElementById('boutonPrestige').style.display = 'flex' : document.getElementById('boutonPrestige').style.display = 'none';
 }, 500);
 
 // Initialisation des Web Workers
@@ -12,36 +15,25 @@ const autoReplanterWorker = new Worker('workers/workerReplanter.js');
 // Gestionnaire pour autoFarmer
 autoFarmerWorker.onmessage = function(e) {
     console.log("Message reçu de autoFarmerWorker out :", e.data);
-    if (e.data === 'execute') {
-        functionAutoFarmer();
-    }
+    if (e.data === 'execute') {functionAutoFarmer();}
 };
-
 autoVendreWorker.onmessage = function(e){
     console.log("Message reçu de autoVendreWorker out :", e.data);
-    if (e.data === 'execute') {
-        functionAutoVendre();
-    }
-}
-
+    if (e.data === 'execute') {functionAutoVendre();}
+};
 autoReplanterWorker.onmessage = function (e) {
     console.log("Message reçu de autoReplanterWorker out :", e.data);
-    if (e.data === 'execute') {
-        functionAutoReplanter();
-    }
+    if (e.data === 'execute') {functionAutoReplanter();}
 };
-
 
 function updateUI(elementsToUpdate) {
     if (!Array.isArray(elementsToUpdate)) return;
-    
     elementsToUpdate.forEach(element => {
         const domElement = document.getElementById(element.id);
         if (domElement) {
             domElement.textContent = element.value;
         }
     });
-
     console.log(elementsToUpdate);
 }
 
@@ -235,6 +227,11 @@ async function ameliorerFertiliterChamp() {
     } else {
         actionImpossible(bouton);
     }
+}
+
+function fairePrestige() {
+    functionPrestige();
+    document.getElementById('boutonPrestige').style.display = 'none';
 }
 
 function actionImpossible(bouton) {

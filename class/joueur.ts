@@ -13,6 +13,9 @@ export class Joueur {
     public niveau = 0
     public niveauPass = 10
     public bleRecolter = 0
+    public niveauPrestige = 1
+    public multiplicateurDePrestige = 1
+    public prestigeAchetable = false
 
     constructor(name :string){
         this.name = name
@@ -41,4 +44,6 @@ export class Joueur {
     augmenterBle(deCbm :number){
         this.bleRecolter += deCbm
     }
+
+    
 }

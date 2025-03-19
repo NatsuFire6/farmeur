@@ -3,7 +3,7 @@ import { Joueur } from "./class/joueur.ts";
 import { functionAmeliorerSacAdos } from "./functions/functionAmeliorerSacAdos.ts";
 import { functionAmeliorerFertiliterChamp, functionAmeliorerTailleChamp } from "./functions/functionAmeliorerChamp.ts";
 import { functionAmeliorerMateriauxOutil, functionAmeliorerTailleOutil } from "./functions/functionAmeliorerOutil.ts";
-import { functionReplanter,functionFarmer,functionVendre, functionAutoFarmer, functionAcheterEtActiverDesactiverAutoFarmer, functionAcheterEtActiverDesactiverAutoReplanter, functionAcheterEtActiverDesactiverAutoVendre, functionAutoReplanter, functionAutoVendre } from "./functions/functionAction.ts";
+import { functionReplanter,functionFarmer,functionVendre, functionAutoFarmer, functionAcheterEtActiverDesactiverAutoFarmer, functionAcheterEtActiverDesactiverAutoReplanter, functionAcheterEtActiverDesactiverAutoVendre, functionAutoReplanter, functionAutoVendre, prestigePossible, prestige } from "./functions/functionAction.ts";
 
 import { WebUI } from "https://deno.land/x/webui@2.5.3/mod.ts";
 async function functionHTML(): Promise<void> {
@@ -27,6 +27,8 @@ async function functionHTML(): Promise<void> {
         myWindow.bind("functionAmeliorerTailleChamp", functionAmeliorerTailleChamp);
         myWindow.bind("functionAmeliorerFertiliterChamp", functionAmeliorerFertiliterChamp);
         myWindow.bind("impossibleAction", impossibleAction);
+        myWindow.bind("prestigePossible", prestigePossible);
+        myWindow.bind("functionPrestige", prestige);
         return myWindow.show(htmlContent);
     } catch (error) {
         return console.error("Erreur lors de la lecture du fichier HTML :", error);
@@ -67,6 +69,7 @@ export function getValues() {
         { id: "autoReplanterAcheter", value: joueurs.champ.autoReplanterAcheter},
         { id: "autoReplanterActiver", value: joueurs.champ.autoReplanter},
         { id: "prixble", value: joueurs.champ.prixDuBle},
+        { id: "prestigePossible", value: joueurs.prestigeAchetable},
     ]);
 }
 
