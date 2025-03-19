@@ -272,6 +272,10 @@ function fairePrestige() {
             }
         }
     });
+
+    autoFarmerWorker.postMessage('stop');
+    autoVendreWorker.postMessage('stop');
+    autoReplanterWorker.postMessage('stop');
 }
 
 function actionImpossible(bouton) {
