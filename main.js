@@ -4,7 +4,13 @@ let arg2 = setInterval(async () => {
     updateUI(values);
     prestigePossible()
     const PrestigePossible = values.find(el => el.id === "prestigePossible");
-    PrestigePossible ? document.getElementById('boutonPrestige').style.display = 'flex' : document.getElementById('boutonPrestige').style.display = 'none';
+    if (PrestigePossible) {
+        document.getElementById('boutonPrestige').classList.add('visible');
+        document.getElementById('boutonPrestige').classList.remove('hidden');
+    } else {
+        document.getElementById('boutonPrestige').classList.add('hidden');
+        document.getElementById('boutonPrestige').classList.remove('visible');
+    }
 }, 500);
 
 // Initialisation des Web Workers
@@ -232,6 +238,40 @@ async function ameliorerFertiliterChamp() {
 function fairePrestige() {
     functionPrestige();
     document.getElementById('boutonPrestige').style.display = 'none';
+
+    // Reset "auto" buttons to their initial state
+    const autoButtons = [
+        { id: 'boutonBuyAutoFarmer', text: 'Auto farmer <br><span>100 000€</span>' },
+        { id: 'boutonBuyAutoVendre', text: 'Auto vendre <br><span>50 000€</span>' },
+        { id: 'boutonBuyAutoReplanter', text: 'Auto replanter <br><span>10 000€</span>' }
+    ];
+
+    autoButtons.forEach(button => {
+        const btnElement = document.getElementById(button.id);
+        if (btnElement) {
+            btnElement.innerHTML = button.text; // Reset text
+            btnElement.style.backgroundColor = ''; // Reset background color
+        }
+    });
+
+    // Restore removed elements
+    const infoElements = [
+        { id: 'info-sacAdos', text: 'Augmente la capacité de stockage du sac à dos.' },
+        { id: 'info-champTaille', text: 'Augmente la surface cultivable du champ.' },
+        { id: 'info-champFertiliter', text: 'Améliore l\'abondances des récoltes de 1. <br>Double le pris à : <span id="bonusFertiliter">1/4</span>' }
+    ];
+
+    infoElements.forEach(info => {
+        if (!document.getElementById(info.id)) {
+            const parent = document.getElementById(info.id.replace('info-', 'boutonAmeliorer'));
+            if (parent) {
+                const newElement = document.createElement('p');
+                newElement.id = info.id;
+                newElement.innerHTML = info.text;
+                parent.parentNode.insertBefore(newElement, parent.nextSibling);
+            }
+        }
+    });
 }
 
 function actionImpossible(bouton) {

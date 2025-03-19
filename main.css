@@ -172,7 +172,7 @@ main {
     position: absolute; /* Set position to absolute */
     top: 35%; /* Maintain its current vertical position */
     left: 20%; /* Maintain its current horizontal position */
-    display: none; /* Hide the button by default */
+    display: flex; /* Hide the button by default */
     align-items: center;
     justify-content: center;
     padding: 0; /* Enlever le padding pour que le bouton soit uniquement l'image */
