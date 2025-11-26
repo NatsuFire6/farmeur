@@ -1,7 +1,7 @@
 ## ⚠️ Ne fonctionne que pour WINDOWS ⚠️
 # Jouer au jeu (avec interface) :
   - Cloner le repo
-  - Ouvrer le dossier qui viens d'être créer
+  - Ouvrer le dossier qui viens d'être créé
   - lancer le ficher "start.bat"
   - Amusez-vous !
 
